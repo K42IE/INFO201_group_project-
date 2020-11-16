@@ -6,11 +6,16 @@ Group members: Katie Pryal, Sydney Burns, Nate Getz, Sabrina Ebengho
 
 Greenhouse and energy emissions have been increasing in the atmosphere at an alarming rate, impacting our environments and overall quality of life. And recent [studies](https://www.gfmag.com/global-data/non-economic-data/happiest-countries) have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To explore this finding, our group is interested in understanding the association between happiness indicators/happiness scores and CO2, greenhouse gas, and energy emissions globally.
 
-#### Examples of other data driven projects related to C02, aircraft, and the environment:
+#### Examples of other data driven projects related to C02 and happiness:
 
-- ['Shame Plane'](https://shameplane.com/?fromCity=Seattle&fromCode=SEA&toCity=Madrid&toCode=MAD&roundtrip=true&typeofseat=3)
-- ['Becoming an environmentally conscious traveler'](https://public.tableau.com/en-gb/gallery/becoming-environmentally-conscious-traveler?tab=featured&type=featured)
-- ['Aviation Emissions'](https://www.tourismdashboard.org/explore-the-data/carbon-emissions/)
+["World Happiness"](http://www.alexanderbastidasfry.com/happy/)
+- This project visualizes happiness by displaying a graph and chart with the key factors studied in the World Happiness Report for each country in the world.
+
+["Fossil Fuel Emissions"](http://www.globalcarbonatlas.org/en/CO2-emissions)
+- This project displays the levels of different emission types in different countries or regions of the world. It also displays fossil fuel rankings for the top emissions countries.
+
+["Happiness and Life Satisfaction"](https://ourworldindata.org/happiness-and-life-satisfaction)
+- This project investigates life satisfaction and happiness in different regions of the world. It explores several factors that relate to happiness and provides information analyzing the data included in this project.
 
 #### Questions to Consider:
 
@@ -26,12 +31,12 @@ Greenhouse and energy emissions have been increasing in the atmosphere at an ala
 ## Finding Data
 
 [CO2 and Greenhouse Gas Emissions by Our World in Data](https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json)
-- Data is generated from combining from the Global Carbon Project, the Carbon Dioxide Information Analysis Center, CAIT Climate Data Explorer, BP Statistical Review of World Energy, IEA World Bank and World Development Indicators. Other sources include the UNited Nation, World Bank, Gapminder, the Maddison Project Database, and additional sources for additional variables included in this dataset.
+- Data is generated from combining from the Global Carbon Project, the Carbon Dioxide Information Analysis Center, CAIT Climate Data Explorer, BP Statistical Review of World Energy, IEA World Bank and World Development Indicators. Other sources include the United Nation, World Bank, Gapminder, the Maddison Project Database, and additional sources for additional variables included in this dataset.
 - There are 24016 rows and 38 columns.
 
 
 [Energy by Our World in Data](https://github.com/owid/energy-data)
-- Data is generated from BP Statistical Review of World Energy, SHIFT Data Portal, EMBER - Global Electricity Dashboard. Other sources include the UNited Nation, World Bank, Gapminder, the Maddison Project Database, and additional sources for additional variables included in this dataset.
+- Data is generated from BP Statistical Review of World Energy, SHIFT Data Portal, EMBER - Global Electricity Dashboard. Other sources include the United Nation, World Bank, Gapminder, the Maddison Project Database, and additional sources for additional variables included in this dataset.
 - There are 91 columns and 10159 rows.
 
 [The World Happiness Report](https://www.kaggle.com/unsdsn/world-happiness)
