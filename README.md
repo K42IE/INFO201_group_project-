@@ -6,6 +6,8 @@ Group members: Katie Pryal, Sydney Burns, Nate Getz, Sabrina Ebengho
 
 ## Domain of Interest
 
+Greenhouse and energy emissions have been increasing in the atmosphere at an alarming rate, impacting our environments and overall quality of life. And recent [studies] (https://www.gfmag.com/global-data/non-economic-data/happiest-countries) have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To explore this finding, our group is interested in understanding the association between happiness indicators/happiness scores and CO2, greenhouse gas, and energy emissions globally.
+
 #### Examples of other data driven projects related to C02, aircraft, and the environment:
 
 - ['Shame Plane'](https://shameplane.com/?fromCity=Seattle&fromCode=SEA&toCity=Madrid&toCode=MAD&roundtrip=true&typeofseat=3)
