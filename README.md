@@ -1,6 +1,4 @@
-# INFO201_group_project-
-
-# UW INFO 201 Group Project
+# Brainstorm Project
 
 Group members: Katie Pryal, Sydney Burns, Nate Getz, Sabrina Ebengho
 
@@ -13,6 +11,17 @@ Greenhouse and energy emissions have been increasing in the atmosphere at an ala
 - ['Shame Plane'](https://shameplane.com/?fromCity=Seattle&fromCode=SEA&toCity=Madrid&toCode=MAD&roundtrip=true&typeofseat=3)
 - ['Becoming an environmentally conscious traveler'](https://public.tableau.com/en-gb/gallery/becoming-environmentally-conscious-traveler?tab=featured&type=featured)
 - ['Aviation Emissions'](https://www.tourismdashboard.org/explore-the-data/carbon-emissions/)
+
+#### Questions to Consider:
+
+> What are the CO2 and greenhouse gas emissions for every country in the world? What countries produce the least and which produced the most?
+- We will use data sets that display the CO2 emissions from every country in the world. In particular we will examine emissions per capita to see how much each individual contributes to the pollution of our atmosphere.
+
+> Which countries use the most energy per capita and how does energy usage compare with greenhouse gas emissions?
+- We will use data on various forms of energy usage to deduce which countries use the most energy collectively and per-capita. We will then compare our finding with the data on CO2 emissions to see if there's overlap.
+
+> Which countries are the happiest and what are the primary reasons for this happines or lack of it?
+- We will be examining the happiness rank of countries around the world, and seeing how these countries rank in categories such as freedom, government trust and education levels. We will also connect this data with the energy usage and CO2 data sets to come to conclusions.
 
 ## Finding Data
 
