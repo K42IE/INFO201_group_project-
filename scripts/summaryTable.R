@@ -1,7 +1,7 @@
 # This document creates a summary table or our dataset for the report
-library(dplyr)
 data <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
 
+# Adding a column of happiness score rounding to a whole number 
 make_summary_table <- function(data) {
   data$whole_happyness_score <- round(data$Score, digits = 0)
   summary_table <- data %>%
