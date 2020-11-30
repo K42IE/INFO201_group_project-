@@ -26,43 +26,44 @@ The average CO2 emissions per capita for countries in the group with a score of
 8 actually decreases. This could suggest that CO2 emissions increase happiness 
 only to a certain point. In the table we also see that the country with the minimum CO2 emissions per capita ranked fairly high in the happiness score with a high score of 5. The country with the max CO2 emissions per capita was not far off with a score of 4. This suggests that there are other factors to consider in comparing CO2 emmistions to happiness. 
 
-#Happiness Scores for the Lowest CO2 Per Capita Countries Bar Chart
+# Happiness Scores for the Lowest CO2 Per Capita Countries Bar Chart
 
 ```{r echo=FALSE, message=FALSE}
 source("scripts/chart_one.R")
 chart_co2_happiness_bar <- co2_happiness_bar(df)
 chart_co2_happiness_bar
 ```
-What this chart attempts to seeks to express: 
+
+### What the chart attempts to seeks to express:
 
   What are the happiness scores of the 5 countries with 
   the lowest CO2 per capita in 2018? 
 
 
-What information this chart reveals: 
+### What information this chart reveals: 
   
   The happiness scores for the 5 countries with the lowest CO2 per Capita 
   are 2.9 (Burundi), 3 (Central African Republic), 4.3 (Chad), 3.6 (Malawi), 
-  and Somalia (5). This is interesting because the happiness scores of these 
+  and 5 (Somalia). This is interesting because the happiness scores of these 
   countries are in the bottom and middle of the range of happiness scores, thus
   the top five lowest CO2 per Capita countries are not countries with the highest
   happiness scores.
   
-#CO2 Per Capita and Happiness Score Scatter Plot
+# CO2 Per Capita and Happiness Score Scatter Plot
 
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, warning = FALSE}
 source("scripts/chart_two.R")
 chart_co2_happiness_scatter <- co2_happiness_scatter(df)
 chart_co2_happiness_scatter
 ```
 
-What the chart attempts to seeks to express: 
+### What the chart attempts to seeks to express: 
   
 What relationship does the happiness score and CO2 per capita 
 by country in 2018 have? Are countries with higher CO2 per capita happier or 
 less happy?
   
-What information the chart reveals: 
+### What information the chart reveals: 
 
 The scatter plot suggests a positive relationship between CO2 per
 capita and happiness score by country. Thus, in general, countries with higher
