@@ -10,10 +10,18 @@ library(knitr)
 library(dplyr)
 ```
 
-# Summary Table
+# CO2 per Capita vs Happiness Table
 
 ```{r echo=FALSE, message=FALSE}
 source("scripts/summaryTable.R")
 table <- make_summary_table(data)
-kable(table)
+kable(table, col.names = c("Rounded Happiness Score", "Mean CO2 per Capita", "Minimum CO2 per Capita", "Maximum CO2 per Capita"))
 ```
+This table narrows down the comparison between a country's happiness score and 
+their CO2 emissions. I have combined countries into groups, bases of of their
+happiness score rounded to the closest whole number. In the table above you will 
+see that mean CO2 emissions per capita increases as the happiness score 
+increases, but this excludes the highest (whole number) happiness score of 8. 
+The average CO2 emissions per capita for countries in the group with a score of
+8 actually decreases. This could suggest that CO2 emissions increase happiness 
+only to a certain point. In the table we also see that the country with the minimum CO2 emissions per capita ranked fairly high in the happiness score with a high score of 5. The country with the max CO2 emissions per capita was not far off with a score of 4. This suggests that there are other factors to consider in comparing CO2 emmistions to happiness. 
