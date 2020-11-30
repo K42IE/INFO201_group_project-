@@ -8,11 +8,15 @@ output: html_document
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
 library(dplyr)
+library(ggplot2)
 ```
+# Introducation
+
+Carbon dioxide (CO2) generates the largest share of greenhouse emissions in the world. CO2 is released during industrial processes and fossil fuel combustions to retrieve energy, or from direct human-induced impacts on forestry and other land use. Emissions have been increasing in the atmosphere at an alarming rate, impacting our environments and overall quality of life. And recent [studies](https://www.gfmag.com/global-data/non-economic-data/happiest-countries) have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To explore this finding, our group is interested in understanding the association between CO2 emissions per capita and happiness scores by country..
 
 # CO2 per Capita vs Happiness Table
 
-```{r echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE}
 source("scripts/summaryTable.R")
 table <- make_summary_table(data)
 kable(table, col.names = c("Rounded Happiness Score", "Mean CO2 per Capita", "Minimum CO2 per Capita", "Maximum CO2 per Capita"))
@@ -25,3 +29,10 @@ increases, but this excludes the highest (whole number) happiness score of 8.
 The average CO2 emissions per capita for countries in the group with a score of
 8 actually decreases. This could suggest that CO2 emissions increase happiness 
 only to a certain point. In the table we also see that the country with the minimum CO2 emissions per capita ranked fairly high in the happiness score with a high score of 5. The country with the max CO2 emissions per capita was not far off with a score of 4. This suggests that there are other factors to consider in comparing CO2 emmistions to happiness. 
+
+# Comparing life expensity with CO2 Emissions
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/chart_three.R")
+chart_three <- make_chart_three(data)
+chart_three
+```
