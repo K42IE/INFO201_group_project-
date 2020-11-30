@@ -30,14 +30,13 @@ The average CO2 emissions per capita for countries in the group with a score of
 8 actually decreases. This could suggest that CO2 emissions increase happiness 
 only to a certain point. In the table we also see that the country with the minimum CO2 emissions per capita ranked fairly high in the happiness score with a high score of 5. The country with the max CO2 emissions per capita was not far off with a score of 4. This suggests that there are other factors to consider in comparing CO2 emmistions to happiness. 
 
-<<<<<<< HEAD
 # Comparing life expensity with CO2 Emissions
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/chart_three.R")
 chart_three <- make_chart_three(data)
 chart_three
 ```
-=======
+
 # Happiness Scores for the Lowest CO2 Per Capita Countries Bar Chart
 
 ```{r echo=FALSE, message=FALSE}
