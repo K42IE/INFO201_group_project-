@@ -1,5 +1,6 @@
 df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
 library(plotly)
+library(dplyr)
 
 What it attempts to seeks to express: 
 
@@ -10,7 +11,7 @@ What it attempts to seeks to express:
 What information it reveals: 
   
   The happiness scores for the 5 countries with the lowest CO2 per Capita 
-  are 2.9 (Burundi), 3 (Central African Republic), 4.3 (Chad), 3.6 (Malwai), 
+  are 2.9 (Burundi), 3 (Central African Republic), 4.3 (Chad), 3.6 (Malawi), 
   and Somalia (5). This is interesting because the happiness scores of these 
   countries are in the bottom and middle of the range of happiness scores, thus
   the top five lowest CO2 per Capita countries are not countries with the highest
