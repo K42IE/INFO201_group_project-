@@ -79,7 +79,7 @@ far off with a score of 4. This suggests that there are other factors to
 consider in comparing CO2 emissions to happiness then what is shown in this 
 table.
 
-# Life Expectancy Among with the Countries with the Lowest CO2 Emissions
+# Life Expectancy Among the Countries with the Lowest CO2 Emissions
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/pi_chart.R")
 chart_three <- make_chart_three(df)
@@ -89,7 +89,7 @@ chart_three
 
 ### What the chart attempts to express:
 Among the 6 countries with the lowest CO2 emissions, how are the life 
-expectancies proportioned to each other? 
+expectancies proportioned to each other in 2018? 
 Among these countries, are there vast differences in life expectancy or 
 are the life expectancies similar? 
 
@@ -101,7 +101,7 @@ country's life expectancies are proportional to each other.
 
 ### What information the chart reveals:
 The pie chart suggests that there are significant differences in life
-expectancy among the the top 6 countries with the lowest CO2 emissions per
+expectancy among the the 6 countries with the lowest CO2 emissions per
 capita. For example, Kosovo's life expectancy alone is only slighly less than
 the life expetancies of the 5 other countries combined. Thus, life expectancy
 varies greatly among the countries with the lowest CO2 per capita emissions and
@@ -134,7 +134,7 @@ the lowest CO2 per capita.
   are 2.9 (Burundi), 3 (Central African Republic), 4.3 (Chad), 3.6 (Malawi), 
   and 5 (Somalia). This is interesting because the happiness scores of these 
   countries are in the bottom and middle of the range of happiness scores, thus
-  the top five lowest CO2 per Capita countries are not countries with the 
+  the top five lowest CO2 per capita countries are not countries with the 
   highest happiness scores.
   
 # CO2 Per Capita and Happiness Score Scatter Plot

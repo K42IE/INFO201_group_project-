@@ -18,6 +18,6 @@ make_chart_three <- function(data) {
   )) +
     geom_bar(stat = "identity", with = 1) +
     coord_polar("y", start = 0) +
-    ggtitle("Healthy Life Expectanncy (Countries with Lowest CO2 Emissions)") +
+    ggtitle("Healthy Life Expectancy (Countries with Lowest CO2 Emissions)") +
     labs(y = "", x = "")
 }
