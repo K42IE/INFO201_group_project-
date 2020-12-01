@@ -1,14 +1,21 @@
+# Creates pi chart of the top 5 countries with the lowest CO2 emissions per
+# capita comparing healthy life expectancy
 make_chart_three <- function(data) {
+  # Narrows down data frame to the countries with the least amount of CO2
+  # emission per capita
   top_highest <- data %>%
     arrange(desc(co2.per.capita)) %>%
     tail()
-  
- chart <- ggplot(top_highest, aes(x = "", y = Healthy.life.expectancy, fill = Country.or.region)) +
+
+  # Creates pi chart
+  chart <- ggplot(top_highest, aes(
+    x = "", y = Healthy.life.expectancy,
+    fill = Country.or.region
+  )) +
     geom_bar(stat = "identity", with = 1) +
     coord_polar("y", start = 0) +
-   ggtitle("Healthy Life Expectanncy for Countries with the Lowest CO2 Emissions") +
-   labs(y = "", x = "")
-  
+    ggtitle("Healthy Life Expectanncy (Countries with Lowest CO2 Emissions)") +
+    labs(y = "", x = "")
+
   return(chart)
 }
-
