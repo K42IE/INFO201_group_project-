@@ -17,7 +17,7 @@ Carbon dioxide (CO2) generates the largest share of greenhouse emissions in the 
 # CO2 per Capita vs Happiness Table
 
 ```{r, echo=FALSE, message=FALSE}
-source("scripts/summaryTable.R")
+source("scripts/summary_table.R")
 table <- make_summary_table(data)
 kable(table, col.names = c("Rounded Happiness Score", "Mean CO2 per Capita", "Minimum CO2 per Capita", "Maximum CO2 per Capita"))
 ```

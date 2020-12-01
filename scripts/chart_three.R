@@ -1,6 +1,3 @@
-library(ggplot2)
-data <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
-
 make_chart_three <- function(data) {
   top_highest <- data %>%
     arrange(desc(co2.per.capita)) %>%
