@@ -1,7 +1,7 @@
-df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
-library(plotly)
+library(ggplot2)
 library(dplyr)
-    
+library(plotly)
+
 co2_happiness_bar <- function(df) {
   lowest_co2 <- df %>%
   top_n(5, wt = -co2.per.capita)
@@ -14,4 +14,3 @@ co2_happiness_bar <- function(df) {
 }
   
   
-co2_happiness_bar(df)

@@ -1,10 +1,11 @@
-df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
-
-library("ggplot2")
+library(ggplot2)
+library(dplyr)
 library(plotly)
 
+
 co2_happiness_scatter <- function(df) {
-happinesss_plot <- ggplot(data = df) + 
+  happiness_data <- df
+  happinesss_plot <- ggplot(data = happiness_data) + 
   geom_smooth(mapping = aes(x = Score, y = co2.per.capita), color = "yellow", alpha = 0.3) +
   geom_point(mapping = aes(x = Score, y = co2.per.capita), color = "yellow", alpha = 0.3) +
   labs(y = "CO2 Per Capita", x = "Happiness Score") + 
@@ -13,9 +14,8 @@ happinesss_plot <- ggplot(data = df) +
   return(happinesss_plot_interactive)
 }
 
-co2_happiness_scatter(df)
 
-#scatter plots by happiness varibale:
+#scatter plots by happiness variable:
 
 life_plot <- ggplot(data = df) + 
   geom_point(mapping = aes(x = Healthy.life.expectancy, y = co2.per.capita), color = "red", alpha = 0.3) +
