@@ -42,7 +42,7 @@ far off with a score of 4. This suggests that there are other factors to
 consider in comparing CO2 emissions to happiness then what is shown in this 
 table.
 
-# Comparing life expensity with CO2 Emissions
+# Comparing Life Expectancy with CO2 Emissions
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/chart_three.R")
 chart_three <- make_chart_three(data)
