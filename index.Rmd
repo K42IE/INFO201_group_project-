@@ -4,7 +4,6 @@ author: "Katherine Pryal"
 date: "11/29/2020"
 output: html_document
 ---
-library(lintr)
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
