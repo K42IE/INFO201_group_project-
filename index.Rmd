@@ -9,6 +9,7 @@ output: html_document
 library(knitr)
 library(dplyr)
 library(ggplot2)
+df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
 ```
 # Domain of Interest
 
@@ -17,8 +18,13 @@ Carbon dioxide (CO2) generates the largest share of greenhouse emissions in the 
 # CO2 per Capita vs Happiness Table
 
 ```{r, echo=FALSE, message=FALSE}
+<<<<<<< HEAD
+source("scripts/summaryTable.R")
+table <- make_summary_table(df)
+=======
 source("scripts/summary_table.R")
 table <- make_summary_table(data)
+>>>>>>> 719577fee8e2cfe3a6fb4c14fc0800dca3679521
 kable(table, col.names = c("Rounded Happiness Score", "Mean CO2 per Capita", "Minimum CO2 per Capita", "Maximum CO2 per Capita"))
 ```
 ### What the chart attempts to seeks to express:
@@ -45,7 +51,7 @@ table.
 # Comparing Life Expectancy with CO2 Emissions
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/chart_three.R")
-chart_three <- make_chart_three(data)
+chart_three <- make_chart_three(df)
 chart_three
 ```
 
