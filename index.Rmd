@@ -13,21 +13,6 @@ df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
 ```
 # Domain of Interest
 
-<<<<<<< HEAD
-Carbon dioxide (CO2) generates the largest share of greenhouse emissions in 
-the world. CO2 is released during industrial processes and fossil fuel 
-combustions to retrieve energy, or from direct human-induced impacts on 
-forestry and other land use. Emissions have been increasing in the atmosphere 
-at an alarming rate, impacting our environments and overall quality of life. 
-And recent 
-[studies](https://www.gfmag.com/global-data/non-economic-data/happiest-countries) 
-have revealed that the happiest countries are those prioritizing well-being and 
-environmental sustainability. To explore this finding, our group is interested 
-in understanding the association between CO2 emissions per capita and happiness 
-scores by country.
-
-=======
->>>>>>> b74844a4d8a369e79097ccd19e2352eda56840ac
 Carbon dioxide (CO2) generates the largest share of greenhouse emissions in the 
 world. CO2 is released during industrial processes and fossil fuel combustions 
 to retrieve energy, or from direct human-induced impacts on forestry and other 
@@ -36,12 +21,12 @@ impacting our environments and overall quality of life. And recent [studies](htt
 have revealed that the happiest countries are those prioritizing well-being and 
 environmental sustainability. To explore this finding, our group is interested 
 in understanding the association between CO2 emissions per capita and happiness 
-<<<<<<< HEAD
 scores by country. We are using a data sets from [The World Happiness Report](https://www.kaggle.com/unsdsn/world-happiness) and [CO2 and Greenhouse 
 Gas Emissions by Our World Data](https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json).
 
+
 # Summary Information
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, results='hide'}
 source("scripts/summary_info.R")
 summary <- get_summary_info(df)
 summary
@@ -64,10 +49,7 @@ per capita data. The range for this is much smaller, from Somalia's
 `r summary$lowest_co2_per_capita` million tonnes per capita to Qatar's
 `r summary$highest_co2_per_capita` million tonnes per capita, for a difference 
 of only `r summary$per_capita_comparison` times more.
-=======
-scores by country. We are using a data sets from [The World Happiness Report](https://www.kaggle.com/unsdsn/world-happiness) and [CO2 and Greenhouse Gas 
-Emissions by Our World Data](https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json).
->>>>>>> b74844a4d8a369e79097ccd19e2352eda56840ac
+
 
 # CO2 per Capita vs Happiness Table
 
@@ -103,23 +85,6 @@ source("scripts/pi_chart.R")
 chart_three <- make_chart_three(df)
 chart_three
 ```
-### What the chart attempts to express: 
-Is there a relationship between country life expectancy and CO2 emissions per 
-capita? Do countries with the lower life expectancy also have the lowest CO2
-emissions? 
-
-### Why we selected chart type and graphical encoding:
-We chose a pi chart to answer this question because it allows us to see the 
-approximate differences in data for a small set of variables 
-(top 5 countries with the smallest CO2 emissions per capita).
-
-### What information the chart reveals:
-We used a pie chart to effectively display proportional data on CO2 emission per 
-capita, between the select small group of countries with lowest life expectancy. 
-This pie chart suggests a positive relationship between country life expectancy 
-and CO2 emission per capita. Given that, we conclude that countries with lowest 
-life expectancy also emit lowest amount of CO2 per capita. 
-
 
 
 ### What the chart attempts to express:
