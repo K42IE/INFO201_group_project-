@@ -2,7 +2,8 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 
-# This document creates a bar chart for our data frame for the report
+# This document creates a bar chart for our data frame for the report comparing
+# happiness scores for the lowest CO2 countries
 
 co2_happiness_bar <- function(df) {
   lowest_co2 <- df %>%

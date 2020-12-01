@@ -13,10 +13,18 @@ df <- read.csv("data/final_data.csv", stringsAsFactors = FALSE)
 ```
 # Domain of Interest
 
-<<<<<<< HEAD
 Carbon dioxide (CO2) generates the largest share of greenhouse emissions in 
-the world. CO2 is released during industrial processes and fossil fuel combustions to retrieve energy, or from direct human-induced impacts on forestry and other land use. Emissions have been increasing in the atmosphere at an alarming rate, impacting our environments and overall quality of life. And recent [studies](https://www.gfmag.com/global-data/non-economic-data/happiest-countries) have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To explore this finding, our group is interested in understanding the association between CO2 emissions per capita and happiness scores by country.
-=======
+the world. CO2 is released during industrial processes and fossil fuel 
+combustions to retrieve energy, or from direct human-induced impacts on 
+forestry and other land use. Emissions have been increasing in the atmosphere 
+at an alarming rate, impacting our environments and overall quality of life. 
+And recent 
+[studies](https://www.gfmag.com/global-data/non-economic-data/happiest-countries) 
+have revealed that the happiest countries are those prioritizing well-being and 
+environmental sustainability. To explore this finding, our group is interested 
+in understanding the association between CO2 emissions per capita and happiness 
+scores by country.
+
 Carbon dioxide (CO2) generates the largest share of greenhouse emissions in the 
 world. CO2 is released during industrial processes and fossil fuel combustions 
 to retrieve energy, or from direct human-induced impacts on forestry and other 
@@ -25,9 +33,33 @@ impacting our environments and overall quality of life. And recent [studies](htt
 have revealed that the happiest countries are those prioritizing well-being and 
 environmental sustainability. To explore this finding, our group is interested 
 in understanding the association between CO2 emissions per capita and happiness 
-scores by country. We are using a data sets from [The World Happiness Report](https://www.kaggle.com/unsdsn/world-happiness) and [CO2 and Greenhouse Gas 
-Emissions by Our World Data](https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json).
->>>>>>> 54944b1ff43de35c3641e6c8824fad1bb269f1d4
+scores by country. We are using a data sets from [The World Happiness Report](https://www.kaggle.com/unsdsn/world-happiness) and [CO2 and Greenhouse 
+Gas Emissions by Our World Data](https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json).
+
+# Summary Information
+```{r, echo=FALSE, message=FALSE}
+source("scripts/summary_info.R")
+summary <- get_summary_info(df)
+summary
+```
+
+
+The joined data set that we are using for this project consists of 2018 
+happiness values on a scale of 1-10 from the World Happiness Report and CO2
+emissions from 2018 measured in millions of metric tons from 
+`r summary$number_of_countries` countries worldwide. In the study, happiness 
+scores range from Burundi's `r summary$lowest_happiness` to Finland's 
+`r summary$highest_happiness`. On the other hand, there is an even larger range
+of CO2 emissions as the lowest country, the Central African Republic, only
+produces `r summary$lowest_co2` million tonnes while China produces the most 
+with `r summary$highest_co2` million tonnes, meaning China produces 
+`r summary$co2_comparison` times more. However, this comparison does not 
+factor in how many more people China has than low emission countries like the 
+Central African Republic which is why our group's focus is on the CO2 emissions 
+per capita data. The range for this is much smaller, from Somalia's
+`r summary$lowest_co2_per_capita` million tonnes per capita to Qatar's
+`r summary$highest_co2_per_capita` million tonnes per capita, for a difference 
+of only `r summary$per_capita_comparison` times more.
 
 # CO2 per Capita vs Happiness Table
 
@@ -36,6 +68,7 @@ source("scripts/summary_table.R")
 table <- make_summary_table(df)
 kable(table, col.names = c("Rounded Happiness Score", "Mean CO2 per Capita", "Minimum CO2 per Capita", "Maximum CO2 per Capita"))
 ```
+
 ### What the chart attempts to seeks to express:
 This table narrows down the comparison between a country’s happiness score and 
 their CO2 emissions. I have combined countries into groups, bases on their 
@@ -44,7 +77,6 @@ this way to show the correlation between happiness and CO2 emissions.
 
 
 ### What information this table reveals: 
-
 In the table above you will see that mean CO2 emissions per capita increases as 
 the happiness score 
 increases, but this excludes the highest (whole number) happiness score of 8. 
@@ -57,12 +89,35 @@ far off with a score of 4. This suggests that there are other factors to
 consider in comparing CO2 emissions to happiness then what is shown in this 
 table.
 
-# Comparing Life Expectancy with CO2 Emissions
+# Life Expectancy Among with the Countries with the Lowest CO2 Emissions
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/chart_three.R")
+source("scripts/pi_chart.R")
 chart_three <- make_chart_three(df)
 chart_three
 ```
+
+
+
+### What the chart attempts to express:
+Among the 6 countries with the lowest CO2 emissions, how are the life 
+expectancies proportioned to each other? 
+Among these countries, are there vast differences in life expectancy or 
+are the life expectancies similar? 
+
+### Why we selected chart type and graphical encoding:
+We used a pie chart to effectively display healthy life 
+expectancy proportionally among the select small group of countries 
+with lowest CO2 emissions. The pie chart allows the viewer to see how these 
+country's life expectancies are proportional to each other. 
+
+### What information the chart reveals:
+The pie chart suggests that there are significant differences in life
+expectancy among the the top 6 countries with the lowest CO2 emissions per
+capita. For example, Kosovo's life expectancy alone is only slighly less than
+the life expetancies of the 5 other countries combined. Thus, life expectancy
+varies greatly among the countries with the lowest CO2 per capita emissions and
+can not be considered similar. 
+
 
 # Happiness Scores for the Lowest CO2 Per Capita Countries Bar Chart
 
@@ -76,25 +131,22 @@ This chart displays the happiness score for each of the five countries with
 the lowest CO2 per capita.
 
 ### What the chart attempts to seeks to express:
-
   What are the happiness scores of the 5 countries with 
   the lowest CO2 per capita in 2018? 
   
 ### Why we selected chart type and graphical encoding:
-
   We chose a bar chart to answer this question because bar charts easily 
   allow viewers to see the happiness score of each of the 5 countries and how
   the happiness score of these countries compare to the others selected. The
   chart is interactive so the score can be viewed when a bar is selected.
 
 ### What information this chart reveals: 
-  
   The happiness scores for the 5 countries with the lowest CO2 per Capita 
   are 2.9 (Burundi), 3 (Central African Republic), 4.3 (Chad), 3.6 (Malawi), 
   and 5 (Somalia). This is interesting because the happiness scores of these 
   countries are in the bottom and middle of the range of happiness scores, thus
-  the top five lowest CO2 per Capita countries are not countries with the highest
-  happiness scores.
+  the top five lowest CO2 per Capita countries are not countries with the 
+  highest happiness scores.
   
 # CO2 Per Capita and Happiness Score Scatter Plot
 
@@ -110,13 +162,11 @@ smoothing line based on the plot data.
 
 
 ### What the chart attempts to seeks to express: 
-  
 What relationship does the happiness score and CO2 per capita 
 by country in 2018 have? Are countries with higher CO2 per capita happier or 
 less happy?
 
 ### Why we selected chart type and graphical encoding:
-
 We chose a scatter plot because scatter plots display the relation between 
 2 variables. The individual points on the scatter plot allow the viewer to
 see the happiness score and CO2 per capita for each country. The smoothing line
@@ -126,7 +176,6 @@ these variables is clearly depicted. The scatter plot is interactive so the
 happiness score and CO2 per capita can be viewed when a point is selected.
   
 ### What information the chart reveals: 
-
 The scatter plot suggests a positive relationship between CO2 per
 capita and happiness score by country. Thus, in general, countries with higher
 happiness scores also have higher co2 per capita emissions.

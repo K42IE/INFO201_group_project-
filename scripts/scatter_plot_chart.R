@@ -2,7 +2,8 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 
-# This document creates a scatter chart for our data frame for the report
+# This document creates a scatter chart for our data frame for the report,
+# comparing CO2 per capita and happiness score
 
 co2_happiness_scatter <- function(df) {
   happiness_data <- df
