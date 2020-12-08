@@ -43,7 +43,7 @@ plot_main_content <- mainPanel(
   plotOutput("scatter"),
   p(strong("Visualization Justification:"), "This chart seeks to answer
     how the variables that make up the overall happiness score
-    are related to each other. Thus, do some variables are 
+    are related to each other. Thus, do some variables have 
     a stronger realtionship than others? Are there any
     varaibles that have a negative relationship?"),
     p(strong("Why This Chart:"), "A scatter plot was appropriate in this
