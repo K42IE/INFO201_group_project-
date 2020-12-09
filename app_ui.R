@@ -48,13 +48,17 @@ select_values <- colnames(plot_final_data)
 x_input <- selectInput(
   "x_var",
   label = "X Variable",
-  choices = select_values,
+  #choices = list("GDP per Capita" = "GDP.per.capita", "Social.support", "Healthy.life.expectancy",
+                 "Freedom.to.make.life.choices", "Generosity", 
+                 "Perceptions.of.corruption"),
   selected = "GDP.per.capita")
 
 y_input <- selectInput(
   "y_var",
   label = "Y Variable",
-  choices = select_values,
+  #choices = list("GDP per Capita" = "GDP.per.capita", "Social.support", "Healthy.life.expectancy",
+                 "Freedom.to.make.life.choices", "Generosity", 
+                 "Perceptions.of.corruption"),
   selected = "Social.support")
 
 

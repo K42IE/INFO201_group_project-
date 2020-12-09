@@ -8,12 +8,6 @@ source("./buildScatter.R")
 
 final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
-
-plot_final_data <- final_data %>%
-  select("GDP.per.capita", "Social.support", "Healthy.life.expectancy",
-         "Freedom.to.make.life.choices", "Generosity", 
-         "Perceptions.of.corruption")
-
 server <- function(input, output) {
   
   # for page 2
