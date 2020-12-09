@@ -10,7 +10,7 @@ page_two_side <- sidebarPanel(
   h2("Choose the Region(s) You Want to Display"),
   checkboxGroupInput(inputId = "checkRegion", label = h3("Regions:"), 
                      choices = list("Africa", "Americas", "Asia", "Europe", 
-                                "Oceania", "Russia"),
+                                    "Oceania", "Russia"),
                      selected = NULL)
 )
 
@@ -48,34 +48,50 @@ select_values <- colnames(plot_final_data)
 x_input <- selectInput(
   "x_var",
   label = "X Variable",
-  #choices = list("GDP per Capita" = "GDP.per.capita", "Social.support", "Healthy.life.expectancy",
-                 "Freedom.to.make.life.choices", "Generosity", 
-                 "Perceptions.of.corruption"),
-  selected = "GDP.per.capita")
+  choices = list("GDP per Capita" = "GDP.per.capita", 
+                 "Social Support" = "Social.support", 
+                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Generosity" = "Generosity", 
+                 "Corruption Perceptions" = "Perceptions.of.corruption"),
+selected = "GDP per Capita")
 
 y_input <- selectInput(
   "y_var",
   label = "Y Variable",
-  #choices = list("GDP per Capita" = "GDP.per.capita", "Social.support", "Healthy.life.expectancy",
-                 "Freedom.to.make.life.choices", "Generosity", 
-                 "Perceptions.of.corruption"),
-  selected = "Social.support")
+  choices = list("GDP per Capita" = "GDP.per.capita", 
+                 "Social Support" = "Social.support", 
+                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Generosity" = "Generosity", 
+                 "Corruption Perceptions" = "Perceptions.of.corruption"),
+selected = "Social Support")
 
 
 
 plot_sidebar_content <- sidebarPanel(
-    selectInput(
+  selectInput(
     "x_var",
     label = "X Variable",
-    choices = select_values,
-    selected = "GDP.per.capita"),
-    selectInput(
+    choices = list("GDP per Capita" = "GDP.per.capita", 
+                   "Social Support" = "Social.support", 
+                   "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Generosity" = "Generosity", 
+                   "Corruption Perceptions" = "Perceptions.of.corruption"),
+    selected = "Generosity"),
+  selectInput(
     "y_var",
     label = "Y Variable",
-    choices = select_values,
-    selected = "Social.support"),
-    checkboxInput("smooth", label = strong("Show Trendline"),
-                  value = TRUE)
+    choices = list("GDP per Capita" = "GDP.per.capita", 
+                   "Social Support" = "Social.support", 
+                   "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Generosity" = "Generosity", 
+                   "Corruption Perceptions" = "Perceptions.of.corruption"),
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
 )
 
 
@@ -86,7 +102,7 @@ plot_main_content <- mainPanel(
     are related to each other. Thus, do some variables have 
     a stronger realtionship than others? Are there any
     varaibles that have a negative relationship?"),
-    p(strong("Why This Chart:"), "A scatter plot was appropriate in this
+  p(strong("Why This Chart:"), "A scatter plot was appropriate in this
     situation because it clearly allows the users to see
     the relationship of the different variables. The ability
     to add a trend line to this plot also furhter clarifies 
@@ -96,8 +112,8 @@ plot_main_content <- mainPanel(
 
 
 plot_panel <- tabPanel(
-  "Scatter Plot",
-  titlePanel("Select Scatter Plot Variables"),
+  "Happiness Variables",
+  titlePanel("Select Scatter Plot Variables:"),
   sidebarLayout(
     plot_sidebar_content,
     plot_main_content
@@ -107,8 +123,7 @@ plot_panel <- tabPanel(
 
 # ui function (combines all pages)
 ui <- navbarPage(
-"Group Project",
-page_two,
-plot_panel
+  "Group Project",
+  page_two,
+  plot_panel
 )
-
