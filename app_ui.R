@@ -40,6 +40,87 @@ page_two <- tabPanel(
   )
 )
 
+# Content for the 3th page
+gdp_range <- range(final_data$GDP.per.capita)
+
+select_values <- colnames(final_data)
+
+
+x_input <- selectInput(
+  "x_var",
+  label = "X Variable",
+  choices = list("GDP per Capita" = "GDP.per.capita", 
+                 "Social Support" = "Social.support", 
+                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Generosity" = "Generosity", 
+                 "Corruption Perceptions" = "Perceptions.of.corruption"),
+  selected = "GDP per Capita")
+
+y_input <- selectInput(
+  "y_var",
+  label = "Y Variable",
+  choices = list("GDP per Capita" = "GDP.per.capita", 
+                 "Social Support" = "Social.support", 
+                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Generosity" = "Generosity", 
+                 "Corruption Perceptions" = "Perceptions.of.corruption"),
+  selected = "Social Support")
+
+
+
+plot_sidebar_content <- sidebarPanel(
+  selectInput(
+    "x_var",
+    label = "X Variable",
+    choices = list("GDP per Capita" = "GDP.per.capita", 
+                   "Social Support" = "Social.support", 
+                   "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Generosity" = "Generosity", 
+                   "Corruption Perceptions" = "Perceptions.of.corruption"),
+    selected = "Generosity"),
+  selectInput(
+    "y_var",
+    label = "Y Variable",
+    choices = list("GDP per Capita" = "GDP.per.capita", 
+                   "Social Support" = "Social.support", 
+                   "Healthy Life Expectancy" = "Healthy.life.expectancy",
+                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Generosity" = "Generosity", 
+                   "Corruption Perceptions" = "Perceptions.of.corruption"),
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
+)
+
+
+plot_main_content <- mainPanel(
+  plotOutput("scatter"),
+  p(strong("Visualization Justification:"), "This chart seeks to answer
+    how the variables that make up the overall happiness score
+    are related to each other. Thus, do some variables have 
+    a stronger realtionship than others? Are there any
+    varaibles that have a negative relationship?"),
+  p(strong("Why This Chart:"), "A scatter plot was appropriate in this
+    situation because it clearly allows the users to see
+    the relationship of the different variables. The ability
+    to add a trend line to this plot also furhter clarifies 
+    and highlights the relationship between the selected
+    variables.")
+)
+
+
+plot_panel <- tabPanel(
+  "Happiness Variables",
+  titlePanel("Select Scatter Plot Variables:"),
+  sidebarLayout(
+    plot_sidebar_content,
+    plot_main_content
+  )
+)
+
 # Content for the 4th page
 gdp_range <- range(final_data$GDP.per.capita)
 
