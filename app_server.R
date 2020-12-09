@@ -2,18 +2,26 @@
 
 library(plotly)
 library(ggplot2)
+library(dplyr)
 
-final_data <- read.csv("./data/final_data.csv", stringsAsFactors = FALSE)
+source("./buildScatter.R")
+
+final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
 
 plot_final_data <- final_data %>%
-  select("GDP.per.capita", "Social.support",
-         "Healthy.life.expectancy", 
-         "Freedom.to.make.life.choices",
-         "Generosity",
+  select("GDP.per.capita", "Social.support", "Healthy.life.expectancy",
+         "Freedom.to.make.life.choices", "Generosity", 
          "Perceptions.of.corruption")
 
 server <- function(input, output) {
+  
+  # for page 2
+  output$co2HappinessPlot <- renderPlotly({
+    return(buildScatter(final_data, input$checkRegion))
+  })
+  
+  # For page 4
   output$scatter <- renderPlot({
     
     title <- paste0("Scatter Plot: ", input$x_var, " v. ", input$y_var)
