@@ -17,11 +17,22 @@ page_two_side <- sidebarPanel(
 page_two_main <- mainPanel(
   plotlyOutput(
     outputId = "co2HappinessPlot"
-  )
+  ),
+  p(strong("Visualization Justification:"), "This chart seeks to answer the 
+  question: Do differint regions/continents have differint trends when 
+    comparing happiness and CO2 emmisions per capita? A visulation will allow
+    the user to easly see if differint graphs for differint regions/continents 
+    have simmular trends."),
+  p(strong("Why This Chart:"), "A scatter plot was appropriate in this
+    situation because it clearly allows the users to see
+    the relationship of the different variables. Having the option for the user 
+    to select multaple continents allows them to better explore how trends 
+    change with regions/continents.")
 )
 
 page_two <- tabPanel(
-  h1("How Does CO2 vs Happiness Trends Differ per Region?"),
+  "CO2 vs Happiness Trends",
+  titlePanel("How Do CO2 vs Happiness Trends Differ per Region?"),
   sidebarLayout(
     page_two_side,
     page_two_main
@@ -90,7 +101,7 @@ plot_panel <- tabPanel(
 )
 
 
-
+# ui function (combines all pages)
 ui <- navbarPage(
 "Group Project",
 page_two,
