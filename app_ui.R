@@ -3,6 +3,7 @@
 library(shiny)
 library(ggplot2)
 library(plotly)
+final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
 
 # Content for the 2nd page
@@ -42,7 +43,7 @@ page_two <- tabPanel(
 # Content for the 4th page
 gdp_range <- range(final_data$GDP.per.capita)
 
-select_values <- colnames(plot_final_data)
+select_values <- colnames(final_data)
 
 
 x_input <- selectInput(
@@ -138,9 +139,96 @@ summary <- tabPanel(
     )
 )
 
+# code for the introduction and map
+intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
+  rename(NAME = Country.or.region)
+
+# gets the colnames of the data frame to put as options in the widget
+intro_col_names <- colnames(intro_df)
+intro_choices <- intro_col_names[c(3:9, 13)]
+
+# writing part
+
+introduction <- tabPanel(
+  titlePanel("Introduction"),
+  mainPanel(
+    p("In the 21st century, the emission of greenhouse gases worldwide has skyrocketed. According to an Our World in Data study, around 50 million metric tons of greenhouses gases are emitted each year. The most prominent of these gasses is Carbon Dioxide, commonly referred to by its chemical formula CO2. CO2 is released during industrial processes, fossil fuel combustions, and from direct human-induced impacts on forestry and other land. These emissions have polluted the atmosphere at an alarming rate, impacting the environment and our overall quality of life. We as a group are interested in the different ways our quality of life and happiness are affected by increased CO2 emissions. Recent studies have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To further explore these discoveries, our group is interested in understanding the association between CO2 emissions per capita and happiness scores by country as well as what other variables contribute to happiness."),
+    p("In our report, we are tackling the following questions:"),
+    tags$ol(
+      tags$li("Do different regions/continents have different trends when comparing happiness and CO2 emissions per capita?"),
+      tags$li("How do the variables that make up the overall happiness score relate with each other? Do some variables have noticeably strong relationships with others? Do any have weak or negative relationships? "),
+      tags$li("What is the overall global trend for the relationship between happiness and CO2 emission per capita? Why does that correlation make sense?")
+    ),  
+    p("To answer these questions, we have created a joined dataset consisting of
+    2018 happiness values on a scale of 1-10 from the World Happiness Report and
+    CO2emissions from 2018 measured in millions of metric tons from 
+    150 countries worldwide. In the study, happiness 
+    scores range from Burundi's 2.905 to Finland's 
+    7.632. On the other hand, there is an even larger range
+    of CO2 emissions as the lowest country, the Central African Republic, only
+    produces 0.304 million metric tons while China produces the most 
+    with 1.006468610^{4} million metric tons, meaning China produces 
+    3.31075210^{4} times more. However, this comparison does not 
+    factor in how many more people China has than low emission countries like 
+    the Central African Republic which is why our group's focus is on the CO2 
+    emissions per capita data as well as the happiness values from the world 
+    happiness study.")
+  )
+)
+
+# other parts of intro
+
+intro_main_one <- mainPanel(
+  
+  
+  comparison_input <- selectInput(
+    inputId = "comparison",
+    label = "Choose what to compare by:",
+    choices = intro_choices
+  ),
+  
+  p("Comparison of Different Factors (darker purple = higher 
+    and gray = no data for that country)"),
+  leafletOutput(outputId = "map"),
+  
+)
+
+
+
+intro_page_one <- tabPanel(
+  
+  "Introduction",
+  
+  titlePanel("Introduction"),
+  
+  introduction,
+  intro_main_one
+)
+
+# rest
+
+
+download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
+system("unzip data/world_shape_file.zip")
+
+world_spdf <- readOGR( 
+  dsn="world_shape_file", 
+  layer="TM_WORLD_BORDERS_SIMPL-0.3",
+  verbose=FALSE
+)
+
+world_spdf@data <- world_spdf@data %>%
+  left_join(intro_df, by = "NAME")
+
+# Create a color palette for the map:
+mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.color="transparent")
+mypalette(c(45,43))
+
+
 # ui function (combines all pages)
 ui <- navbarPage(
   "Group Project",
+  intro_page_one,
   page_two,
   plot_panel,
   summary
