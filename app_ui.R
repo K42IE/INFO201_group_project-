@@ -6,9 +6,10 @@ library(plotly)
 final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
 
-# Content for the 2nd page
+## Content for the 2nd page
 page_two_side <- sidebarPanel(
   h2("Choose the Region(s) You Want to Display"),
+  # allows user to pick contenent to display on graph
   checkboxGroupInput(inputId = "checkRegion", label = h3("Regions:"), 
                      choices = list("Africa", "Americas", "Asia", "Europe", 
                                     "Oceania", "Russia"),
@@ -17,6 +18,7 @@ page_two_side <- sidebarPanel(
 
 page_two_main <- mainPanel(
   plotlyOutput(
+    # displays graph
     outputId = "co2HappinessPlot"
   ),
   p(strong("Visualization Justification:"), "This chart seeks to answer the 
@@ -40,9 +42,10 @@ page_two <- tabPanel(
   )
 )
 
-# Content for the 3th page
+## Content for the 3th page
 
 plot_sidebar_content_pg3 <- sidebarPanel(
+  # Allows user to choose a happiness category to display on graph
   selectInput(
     "y_var_pg3",
     label = "Y Variable",
@@ -58,6 +61,7 @@ plot_sidebar_content_pg3 <- sidebarPanel(
 
 
 plot_main_content_pg3 <- mainPanel(
+  # Shows graph
   plotOutput("scatter_pg3"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how 
     happiness score-encompassing variables relate to GDP per capita. Thus, 

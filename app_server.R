@@ -10,7 +10,7 @@ final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
 server <- function(input, output) {
   
-  # for page 1
+  ## for page 1
   output$map <- renderLeaflet({
     leaflet(world_spdf) %>% 
       addTiles()  %>% 
@@ -21,12 +21,12 @@ server <- function(input, output) {
                   input$comparison]) )
   })
   
-  # for page 2
+  ## for page 2
   output$co2HappinessPlot <- renderPlotly({
     return(buildScatter(final_data, input$checkRegion))
   })
   
-  # For page 3
+  ## For page 3
   output$scatter_pg3 <- renderPlot({
     
     title <- paste0("Scatter Plot: ", final_data$GDP.per.capita, " v. ", input$y_var_pg3)
@@ -35,7 +35,7 @@ server <- function(input, output) {
     plot <- ggplot(data = final_data) +
       geom_point(mapping = aes_string(x = final_data$GDP.per.capita, y = input$y_var_pg3)) +
       labs(x = final_data$GDP.per.capita, y = input$y_var_pg3, title = title)
-    
+    # created trend line
     if (input$smooth) {
       plot <- plot + geom_smooth(mapping = 
                                    aes_string(x = final_data$GDP.per.capita, y = input$y_var_pg3))
@@ -45,7 +45,7 @@ server <- function(input, output) {
     
   })
   
-  # For page 4
+  ## For page 4
   output$scatter <- renderPlot({
     
     title <- paste0("Scatter Plot: ", input$x_var, " v. ", input$y_var)
