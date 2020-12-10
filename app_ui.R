@@ -55,9 +55,7 @@ plot_sidebar_content_pg3 <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita"),
-  checkboxInput("smooth", label = strong("Show Trendline"),
-                value = TRUE)
+    selected = "GDP per Capita")
 )
 
 # Content for the main panel
@@ -133,9 +131,7 @@ plot_sidebar_content <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita"),
-  checkboxInput("smooth", label = strong("Show Trendline"),
-                value = TRUE)
+    selected = "GDP per Capita")
 )
 
 

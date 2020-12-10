@@ -65,33 +65,15 @@ server <- function(input, output) {
 
   #create scatter plot output
   output$scatter_pg3 <- renderPlot({
-    #create title using y user input
+
     title <- paste0("Scatter Plot: ", "CO2 per Capita", " v. ", input$y_var_pg3)
 
-    #plot data using ggplot
-    plot <- ggplot(data = final_data) +
+    plot <- ggplot(data = final_data) + geom_point(
+      mapping = aes_string(
+      x = final_data$co2.per.capita, y = input$y_var_pg3)) +
+      labs(x = final_data$co2.per.capita, y = input$y_var_pg3, title = title)
 
-      geom_point(mapping = aes_string(x = final_data$GDP.per.capita,
-                                      y = input$y_var_pg3)) +
-      labs(x = final_data$GDP.per.capita, y = input$y_var_pg3, title = title)
-
-    # created trend line
-      geom_point(mapping = aes_string(x = final_data$co2.per.capita,
-                                      y = input$y_var_pg3)) +
-      labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
-
-      geom_point(mapping = aes_string(x = final_data$co2.per.capita,
-                                      y = input$y_var_pg3)) +
-      labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
-    #add statement to include trend box option for user
-
-    if (input$smooth) {
-      plot <- plot + geom_smooth(mapping =
-                                   aes_string(x = final_data$co2.per.capita,
-                                              y = input$y_var_pg3))
-    }
-
-    plot
+    ggplotly(plot)
 
   })
 
@@ -107,13 +89,8 @@ server <- function(input, output) {
     plot <- ggplot(data = final_data) +
       geom_point(mapping = aes_string(x = input$x_var, y = input$y_var)) +
       labs(x = input$x_var, y = input$y_var, title = title)
-    #add statement to include trend box option for user
-    if (input$smooth) {
-      plot <- plot + geom_smooth(mapping =
-                                   aes_string(x = input$x_var, y = input$y_var))
-    }
 
-    plot
+    ggplotly(plot)
 
   })
 }
