@@ -242,10 +242,6 @@ intro_page_one <- tabPanel(
 
 # rest
 
-
-download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
-system("unzip data/world_shape_file.zip")
-
 world_spdf <- readOGR( 
   dsn="world_shape_file", 
   layer="TM_WORLD_BORDERS_SIMPL-0.3",
@@ -260,9 +256,9 @@ mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.col
 mypalette(c(45,43))
 
 
-# ui function (combines all pages)
+## UI function (combines all pages)
 ui <- navbarPage(
-  "Group Project",
+  "CO2 vs Happiness",
   intro_page_one,
   page_two,
   page_3,
