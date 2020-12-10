@@ -228,11 +228,6 @@ summary <- tabPanel(
     )
 )
 
-
-# gets the colnames of the data frame to put as options in the widget
-intro_col_names <- colnames(intro_df)
-intro_choices <- intro_col_names[c(3:9, 13)]
-
 # writing part
 
 introduction <- tabPanel(
@@ -290,20 +285,7 @@ introduction <- tabPanel(
 
 # other parts of intro
 
-intro_main_one <- mainPanel(
 
-
-comparison_input <- selectInput(
-    inputId = "comparison",
-    label = "Choose what to compare by:",
-    choices = intro_choices
-  ),
-
-  p("Comparison of Different Factors (darker purple = higher
-    and gray = no data for that country)"),
-  leafletOutput(outputId = "map"),
-
-)
 
 
 
@@ -313,27 +295,8 @@ intro_page_one <- tabPanel(
 
   titlePanel("Introduction"),
 
-  introduction,
-  intro_main_one
+  introduction
 )
-
-
-# rest
-
-world_spdf <- readOGR(
-  dsn = "world_shape_file",
-  layer = "TM_WORLD_BORDERS_SIMPL-0.3",
-  verbose = FALSE
-)
-
-world_spdf@data <- world_spdf@data %>%
-  left_join(intro_df, by = "NAME")
-
-# Create a color palette for the map:
-mypalette <- colorNumeric(palette = "viridis",
-                           domain =
-                             world_spdf@data$co2, na.color = "transparent")
-mypalette(c(45, 43))
 
 
 ## UI function (combines all pages)
