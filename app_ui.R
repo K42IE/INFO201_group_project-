@@ -46,6 +46,7 @@ page_two <- tabPanel(
 
 plot_sidebar_content_pg3 <- sidebarPanel(
   # Allows user to choose a happiness category to display on graph
+  h2("Choose the Happiness Variable You Want to Display"),
   selectInput(
     "y_var_pg3",
     label = "Y Variable",
@@ -64,10 +65,10 @@ plot_main_content_pg3 <- mainPanel(
   # Shows graph
   plotOutput("scatter_pg3"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how 
-    happiness score-encompassing variables relate to GDP per capita. Thus, 
-    which variables have positive relationships with GDP per capita? Are there 
-    variables revealing a negative relationship with GDP per capita?"),
-  p(strong("Why This Chart:"), "A scatter plot is appropriate in this css as it 
+    happiness score-encompassing variables relate to CO2 per capita. Thus, 
+    which variables have positive relationships with CO2 per capita? Are there 
+    variables revealing a negative relationship with CO2 per capita?"),
+  p(strong("Why This Chart:"), "A scatter plot is appropriate in this case as it 
     clearly allows users to observe patterns and identify correlational
     relationships between variables; and trend lines are intended to highlight 
     those correlating relationships.")
@@ -75,8 +76,8 @@ plot_main_content_pg3 <- mainPanel(
 
 
 page_3 <- tabPanel(
-  "Happiness Variables vs GDP",
-  titlePanel("How do the Happiness Varables Relate to GDP?"),
+  "Happiness Variables vs CO2",
+  titlePanel("How do the Happiness Varables Relate to CO2?"),
   sidebarLayout(
     plot_sidebar_content_pg3,
     plot_main_content_pg3
@@ -109,6 +110,7 @@ selected = "Social Support")
 
 
 plot_sidebar_content <- sidebarPanel(
+  h2("Choose the Happiness Variables You Want to Display"),
   selectInput(
     "x_var",
     label = "X Variable",
@@ -152,7 +154,7 @@ plot_main_content <- mainPanel(
 
 plot_panel <- tabPanel(
   "Happiness Variables",
-  titlePanel("Select Scatter Plot Variables:"),
+  titlePanel("How do the Happiness Varables Relate to Each Other?"),
   sidebarLayout(
     plot_sidebar_content,
     plot_main_content
@@ -178,9 +180,6 @@ summary <- tabPanel(
     )
 )
 
-# code for the introduction and map
-intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
-  rename(NAME = Country.or.region)
 
 # gets the colnames of the data frame to put as options in the widget
 intro_col_names <- colnames(intro_df)
@@ -211,7 +210,11 @@ introduction <- tabPanel(
     factor in how many more people China has than low emission countries like 
     the Central African Republic which is why our group's focus is on the CO2 
     emissions per capita data as well as the happiness values from the world 
-    happiness study.")
+    happiness study.",
+      a("Wolrd Happiness Data", 
+        href = "https://www.kaggle.com/unsdsn/world-happiness"),
+      a("CO2 And Greenhouse Gas Emission Data", 
+      href = "https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json"))
   )
 )
 
@@ -244,6 +247,7 @@ intro_page_one <- tabPanel(
   intro_main_one
 )
 
+
 # rest
 
 world_spdf <- readOGR( 
@@ -264,7 +268,7 @@ mypalette(c(45,43))
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(
-    "CO2 vs Happiness",
+    "CO2 & Happiness",
     intro_page_one,
     page_two,
     page_3,

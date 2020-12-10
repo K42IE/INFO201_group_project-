@@ -10,7 +10,41 @@ final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
 
 server <- function(input, output) {
   
-  ## for page 1
+  # for page 1
+ 
+  # code for the introduction and map
+  intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
+    rename(NAME = Country.or.region)
+  
+  
+  
+  # gets the colnames of the data frame to put as options in the widget
+  intro_col_names <- colnames(intro_df)
+  intro_choices <- intro_col_names[c(3:9, 13)]
+  
+  
+  
+  # rest
+  world_spdf <- readOGR( 
+    dsn="world_shape_file", 
+    layer="TM_WORLD_BORDERS_SIMPL-0.3",
+    verbose=FALSE
+  )
+  
+  
+  
+  world_spdf@data <- world_spdf@data %>%
+    left_join(intro_df, by = "NAME")
+  
+  
+  
+  # Create a color palette for the map:
+  mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, 
+                             na.color="transparent")
+  mypalette(c(45,43))
+  
+  
+
   output$map <- renderLeaflet({
     leaflet(world_spdf) %>% 
       addTiles()  %>% 
@@ -21,7 +55,7 @@ server <- function(input, output) {
                   input$comparison]) )
   })
   
-  ## for page 2
+  ## For page 2
   output$co2HappinessPlot <- renderPlotly({
     return(buildScatter(final_data, input$checkRegion))
   })
@@ -29,16 +63,21 @@ server <- function(input, output) {
   ## For page 3
   output$scatter_pg3 <- renderPlot({
     
-    title <- paste0("Scatter Plot: ", final_data$GDP.per.capita, " v. ", input$y_var_pg3)
+    title <- paste0("Scatter Plot: ", "CO2 per Capita", " v. ", input$y_var_pg3)
     
     
     plot <- ggplot(data = final_data) +
       geom_point(mapping = aes_string(x = final_data$GDP.per.capita, y = input$y_var_pg3)) +
       labs(x = final_data$GDP.per.capita, y = input$y_var_pg3, title = title)
+    
     # created trend line
+      geom_point(mapping = aes_string(x = final_data$co2.per.capita, y = input$y_var_pg3)) +
+      labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
+    
+
     if (input$smooth) {
       plot <- plot + geom_smooth(mapping = 
-                                   aes_string(x = final_data$GDP.per.capita, y = input$y_var_pg3))
+                                   aes_string(x = final_data$co2.per.capita, y = input$y_var_pg3))
     }
     
     plot
