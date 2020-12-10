@@ -70,19 +70,12 @@ server <- function(input, output) {
 
     #plot data using ggplot
     plot <- ggplot(data = final_data) +
-
-      geom_point(mapping = aes_string(x = final_data$GDP.per.capita,
-                                      y = input$y_var_pg3)) +
-      labs(x = final_data$GDP.per.capita, y = input$y_var_pg3, title = title)
-
     # created trend line
       geom_point(mapping = aes_string(x = final_data$co2.per.capita,
                                       y = input$y_var_pg3)) +
       labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
 
-      geom_point(mapping = aes_string(x = final_data$co2.per.capita,
-                                      y = input$y_var_pg3)) +
-      labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
+    ggplotly(plot)
     #add statement to include trend box option for user
 
     if (input$smooth) {
@@ -90,9 +83,15 @@ server <- function(input, output) {
                                    aes_string(x = final_data$co2.per.capita,
                                               y = input$y_var_pg3))
     }
-
+    
+    
     plot
 
+  })
+  
+  output$hover_info <- renderPrint({
+    cat("input$plot_hover:\n")
+    str(input$plot_hover)
   })
 
   # For page 4
