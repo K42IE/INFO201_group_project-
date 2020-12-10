@@ -41,10 +41,8 @@ page_two <- tabPanel(
 )
 
 # Content for the 3th page
-gdp_range <- range(final_data$GDP.per.capita)
 
 plot_sidebar_content_pg3 <- sidebarPanel(
-
   selectInput(
     "y_var_pg3",
     label = "Y Variable",
@@ -82,11 +80,6 @@ page_3 <- tabPanel(
 )
 
 # Content for the 4th page
-gdp_range <- range(final_data$GDP.per.capita)
-
-select_values <- colnames(final_data)
-
-
 x_input <- selectInput(
   "x_var",
   label = "X Variable",
@@ -162,6 +155,7 @@ plot_panel <- tabPanel(
   )
 )
 
+# Summary 
 summary <- tabPanel(
   "Summary",
   titlePanel("Summary"),
