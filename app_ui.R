@@ -294,7 +294,7 @@ intro_page_one <- tabPanel(
   "Introduction",
   
   titlePanel("Introduction"),
-  
+
   introduction
 )
 
