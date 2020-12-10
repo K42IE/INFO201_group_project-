@@ -52,7 +52,8 @@ plot_sidebar_content_pg3 <- sidebarPanel(
     label = "Y Variable",
     choices = list("Social Support" = "Social.support", 
                    "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Freedom to Make Life Choices" = 
+                     "Freedom.to.make.life.choices", 
                    "Generosity" = "Generosity", 
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
     selected = "GDP per Capita"),
@@ -91,7 +92,8 @@ x_input <- selectInput(
   choices = list("GDP per Capita" = "GDP.per.capita", 
                  "Social Support" = "Social.support", 
                  "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Freedom to Make Life Choices" = 
+                   "Freedom.to.make.life.choices", 
                  "Generosity" = "Generosity", 
                  "Corruption Perceptions" = "Perceptions.of.corruption"),
 selected = "GDP per Capita")
@@ -102,7 +104,8 @@ y_input <- selectInput(
   choices = list("GDP per Capita" = "GDP.per.capita", 
                  "Social Support" = "Social.support", 
                  "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                 "Freedom to Make Life Choices" = 
+                   "Freedom.to.make.life.choices", 
                  "Generosity" = "Generosity", 
                  "Corruption Perceptions" = "Perceptions.of.corruption"),
 selected = "Social Support")
@@ -117,7 +120,8 @@ plot_sidebar_content <- sidebarPanel(
     choices = list("GDP per Capita" = "GDP.per.capita", 
                    "Social Support" = "Social.support", 
                    "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
+                   "Freedom to Make Life Choices" = 
+                     "Freedom.to.make.life.choices", 
                    "Generosity" = "Generosity", 
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
     selected = "Generosity"),
@@ -166,17 +170,59 @@ summary <- tabPanel(
   "Summary",
   titlePanel("Summary"),
   mainPanel(
-    h3("Strong correlation between GDP per Capita and both Health Life Expectancy and Social Support."),
+    h3("Strong correlation between GDP per Capita and both Health 
+       Life Expectancy and Social Support."),
     img(alt = "GDPvsLifeExpImage", src = "GDP_lifeexpectancy.png", width = 480),
     img(alt = "GDPvsSocialImage", src = "GDP_socialsupport.png", width = 480),
-    p("As seen in these 2 graphs, despite a few outliers, there is a strong positive correlation between GDP per capita and both the Health and Life Expectancy and Social Support scores. Altogether, this makes a lot of sense. Countries that are richer in terms of GDP per capita likely have more resources able to be dedicated to healthcare and nutrition which helps support a healthier and older population. Similarly, citizens in rich countries tend to have better access to education, retirement planning, and rehabilitation centers as the governments have more room to spend on those areas, which altogether improves the country's social scores. There is a clear trend that poorer countries are not doing enough to satisfy the health and social needs of their citizens. While it is not something they can entirely control, as they do not have enough money for every governmental sector, poorer countries need to find away to improve the health of their citizens and the social support offered to them."),
-    h3("Comparison of the Happiness and CO2 relationship between Africa and Eurasia (European and Asian countries)"),
+    p("As seen in these 2 graphs, despite a few outliers, there is a 
+      strong positive correlation between GDP per capita and both 
+      the Health and Life Expectancy and Social Support scores. 
+      Altogether, this makes a lot of sense. Countries that are 
+      richer in terms of GDP per capita likely have more resources 
+      able to be dedicated to healthcare and nutrition which helps 
+      support a healthier and older population. Similarly, citizens in 
+      rich countries tend to have better access to education, retirement 
+      planning, and rehabilitation centers as the governments have more 
+      room to spend on those areas, which altogether improves the country's 
+      social scores. There is a clear trend that poorer countries are not 
+      doing enough to satisfy the health and social needs of their citizens. 
+      While it is not something they can entirely control, as they do not 
+      have enough money for every governmental sector, poorer countries 
+      need to find away to improve the health of their citizens and the 
+      social support offered to them."),
+    h3("Comparison of the Happiness and CO2 relationship between Africa 
+       and Eurasia (European and Asian countries)"),
     img(alt = "AfricaTrendImage", src = "Africa_trend.png", width = 480),
     img(alt = "EurasiaTrendImage", src = "Eurasia_trend.jpg", width = 480),
-    p("These two graphs show the relationship between raw happiness score and yearly average CO2 per capita data from 2018. In the first graph, which features the countries of Africa, there is not much of a correlation between happiness and CO2 emissions. Besides a few outliers, most African countries produce approximately the same amount of CO2 per capita and there is no visible trend. When looking at the second graph, which is the combined data from Asian and European countries, the first thing that stands out is that the scale is much larger in terms of both CO2 emissions and the fact the happiness scores have a higher range, median, and mean. There is also a much more defined trend, where countries with higher happiness scores use more CO2 per capita. The difference in CO2 per capita in Africa versus Eurasia is likely attributed to how much more developed countries in Eurasia are than countries that are still growing economically and socially in Africa. Eurasian countries have much more automobile traffic, large cities, and industrial factories which all contribute to the emission of CO2 that pollutes the atmosphere."),
+    p("These two graphs show the relationship between raw happiness score 
+      and yearly average CO2 per capita data from 2018. In the first graph, 
+      which features the countries of Africa, there is not much of a 
+      correlation between happiness and CO2 emissions. Besides a few outliers, 
+      most African countries produce approximately the same amount of CO2 per 
+      capita and there is no visible trend. When looking at the second graph, 
+      which is the combined data from Asian and European countries, the first 
+      thing that stands out is that the scale is much larger in terms of both 
+      CO2 emissions and the fact the happiness scores have a higher range, 
+      median, and mean. There is also a much more defined trend, where 
+      countries with higher happiness scores use more CO2 per capita. 
+      The difference in CO2 per capita in Africa versus Eurasia is likely 
+      attributed to how much more developed countries in Eurasia are than 
+      countries that are still growing economically and socially in Africa. 
+      Eurasian countries have much more automobile traffic, large cities, 
+      and industrial factories which all contribute to the emission of CO2 
+      that pollutes the atmosphere."),
     h3("Global Correlation between Happiness Scores and CO2 per Capita"),
     img(alt = "GlobalTrendImage", src = "Global_trend.png", width = 480),
-    p("This scatter plot shows the global, positive relationship between CO2 per capita emissions and happiness scores by country in 2018. This suggests that the countries with higher happiness scores tend to produce more CO2 emissions per capita, apart from a few outliers. Through looking at our data holistically we believe that this correlation has a lot to do with GDP of the countries. We found that richer countries tend to be happier and produce more CO2 emissions as they have big cities and largescale industrial sectors. The happiest countries are those that feel most free to use CO2 as they please and that is clear from our data."),
+    p("This scatter plot shows the global, positive relationship between CO2 
+      per capita emissions and happiness scores by country in 2018. 
+      This suggests that the countries with higher happiness scores tend to 
+      produce more CO2 emissions per capita, apart from a few outliers. 
+      Through looking at our data holistically we believe that this 
+      correlation has a lot to do with GDP of the countries. We found 
+      that richer countries tend to be happier and produce more CO2 
+      emissions as they have big cities and largescale industrial sectors. 
+      The happiest countries are those that feel most free to use CO2 as 
+      they please and that is clear from our data."),
     )
 )
 
@@ -190,12 +236,33 @@ intro_choices <- intro_col_names[c(3:9, 13)]
 introduction <- tabPanel(
   titlePanel("Introduction"),
   mainPanel(
-    p("In the 21st century, the emission of greenhouse gases worldwide has skyrocketed. According to an Our World in Data study, around 50 million metric tons of greenhouses gases are emitted each year. The most prominent of these gasses is Carbon Dioxide, commonly referred to by its chemical formula CO2. CO2 is released during industrial processes, fossil fuel combustions, and from direct human-induced impacts on forestry and other land. These emissions have polluted the atmosphere at an alarming rate, impacting the environment and our overall quality of life. We as a group are interested in the different ways our quality of life and happiness are affected by increased CO2 emissions. Recent studies have revealed that the happiest countries are those prioritizing well-being and environmental sustainability. To further explore these discoveries, our group is interested in understanding the association between CO2 emissions per capita and happiness scores by country as well as what other variables contribute to happiness."),
+    p("In the 21st century, the emission of greenhouse gases worldwide has 
+      skyrocketed. According to an Our World in Data study, around 50 million 
+      metric tons of greenhouses gases are emitted each year. The most 
+      prominent of these gasses is Carbon Dioxide, commonly referred to 
+      by its chemical formula CO2. CO2 is released during industrial 
+      processes, fossil fuel combustions, and from direct human-induced 
+      impacts on forestry and other land. These emissions have polluted 
+      the atmosphere at an alarming rate, impacting the environment and 
+      our overall quality of life. We as a group are interested in the 
+      different ways our quality of life and happiness are affected by 
+      increased CO2 emissions. Recent studies have revealed that the 
+      happiest countries are those prioritizing well-being and environmental 
+      sustainability. To further explore these discoveries, our group is 
+      interested in understanding the association between CO2 emissions per 
+      capita and happiness scores by country as well as what other variables 
+      contribute to happiness."),
     p("In our report, we are tackling the following questions:"),
     tags$ol(
-      tags$li("Do different regions/continents have different trends when comparing happiness and CO2 emissions per capita?"),
-      tags$li("How do the variables that make up the overall happiness score relate with each other? Do some variables have noticeably strong relationships with others? Do any have weak or negative relationships? "),
-      tags$li("What is the overall global trend for the relationship between happiness and CO2 emission per capita? Why does that correlation make sense?")
+      tags$li("Do different regions/continents have different trends when 
+              comparing happiness and CO2 emissions per capita?"),
+      tags$li("How do the variables that make up the overall happiness 
+              score relate with each other? Do some variables have noticeably 
+              strong relationships with others? Do any have weak or negative 
+              relationships? "),
+      tags$li("What is the overall global trend for the relationship between 
+              happiness and CO2 emission per capita? Why does that 
+              correlation make sense?")
     ),  
     p("To answer these questions, we have created a joined dataset consisting of
     2018 happiness values on a scale of 1-10 from the World Happiness Report and
@@ -210,7 +277,7 @@ introduction <- tabPanel(
     factor in how many more people China has than low emission countries like 
     the Central African Republic which is why our group's focus is on the CO2 
     emissions per capita data as well as the happiness values from the world 
-    happiness study.",
+    happiness study.)",
       a("Wolrd Happiness Data", 
         href = "https://www.kaggle.com/unsdsn/world-happiness"),
       a("CO2 And Greenhouse Gas Emission Data", 
@@ -260,7 +327,8 @@ world_spdf@data <- world_spdf@data %>%
   left_join(intro_df, by = "NAME")
 
 # Create a color palette for the map:
-mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.color="transparent")
+mypalette <- colorNumeric( palette="viridis", 
+                           domain=world_spdf@data$co2, na.color="transparent")
 mypalette(c(45,43))
 
 
