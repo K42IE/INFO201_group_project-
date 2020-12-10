@@ -4,6 +4,8 @@ library(plotly)
 library(ggplot2)
 library(dplyr)
 
+library(ggiraph)
+
 source("./buildScatter.R")
 
 #read in data frame
@@ -17,13 +19,9 @@ server <- function(input, output) {
   intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
     rename(NAME = Country.or.region)
 
-
-
   # gets the colnames of the data frame to put as options in the widget
   intro_col_names <- colnames(intro_df)
   intro_choices <- intro_col_names[c(3:9, 13)]
-
-
 
   # rest
   world_spdf <- readOGR(
@@ -32,19 +30,14 @@ server <- function(input, output) {
     verbose = FALSE
   )
 
-
-
   world_spdf@data <- world_spdf@data %>%
     left_join(intro_df, by = "NAME")
 
-
-
+  
   # Create a color palette for the map:
   mypalette <- colorNumeric(palette = "viridis", domain = world_spdf@data$co2,
                              na.color = "transparent")
   mypalette(c(45, 43))
-
-
 
   output$map <- renderLeaflet({
     leaflet(world_spdf) %>%
