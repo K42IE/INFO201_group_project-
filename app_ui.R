@@ -62,9 +62,7 @@ plot_sidebar_content_pg3 <- sidebarPanel(
 
 # Content for the main panel
 plot_main_content_pg3 <- mainPanel(
-  
-  plotOutput("scatter_pg3",
-             hover = hoverOpts(id = "plot_hover")),
+  plotOutput("scatter_pg3", hover = hoverOpts(id = "plot_hover")),
   verbatimTextOutput("hover_info"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how
   happiness score-encompassing variables relate to CO2 per capita. Thus,
