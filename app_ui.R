@@ -55,18 +55,14 @@ plot_sidebar_content_pg3 <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita"),
-  checkboxInput("smooth", label = strong("Show Trendline"),
-                value = TRUE)
+    selected = "GDP per Capita")
 )
 
 # Content for the main panel
 plot_main_content_pg3 <- mainPanel(
+  
   plotOutput("scatter_pg3",
-             hover = hoverOpts(
-               id = "plot_hover"
-             )
-  ),
+             hover = hoverOpts(id = "plot_hover")),
   verbatimTextOutput("hover_info"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how
   happiness score-encompassing variables relate to CO2 per capita. Thus,
@@ -138,14 +134,14 @@ plot_sidebar_content <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita"),
-  checkboxInput("smooth", label = strong("Show Trendline"),
-                value = TRUE)
+    selected = "GDP per Capita")
 )
 
 
 plot_main_content <- mainPanel(
-  plotOutput("scatter"),
+  plotOutput("scatter",
+             hover = hoverOpts(id = "plot_hover_p4")),
+  verbatimTextOutput("hover_info_p4"),
   p(strong("Visualization Justification:"), "This chart seeks to answer
     how the variables that make up the overall happiness score
     are related to each other. Thus, do some variables have
@@ -178,7 +174,7 @@ summary <- tabPanel(
        Life Expectancy and Social Support."),
     img(alt = "GDPvsLifeExpImage", src = "GDP_lifeexpectancy.png", width = 480),
     img(alt = "GDPvsSocialImage", src = "GDP_socialsupport.png", width = 480),
-    p("As seen in these 2 graphs, despite a few outliers, there is a
+    (id = "As seen in these 2 graphs, despite a few outliers, there is a
       strong positive correlation between GDP per capita and both
       the Health and Life Expectancy and Social Support scores.
       Altogether, this makes a lot of sense. Countries that are
@@ -194,8 +190,7 @@ summary <- tabPanel(
       have enough money for every governmental sector, poorer countries
       need to find away to improve the health of their citizens and the
       social support offered to them."),
-     h3(
-    "Comparison of the Happiness and CO2 relationship between Africa
+    h3("Comparison of the Happiness and CO2 relationship between Africa
        and Eurasia (European and Asian countries)"),
     img(alt = "AfricaTrendImage", src = "Africa_trend.png", width = 480),
     img(alt = "EurasiaTrendImage", src = "Eurasia_trend.jpg", width = 480),
@@ -218,10 +213,8 @@ summary <- tabPanel(
       that pollutes the atmosphere."),
     h3("Global Correlation between Happiness Scores and CO2 per Capita"),
     img(alt = "GlobalTrendImage", src = "Global_trend.png", width = 480),
-    tags$p(
-    id = "red",
-    "This scatter plot shows the global, positive relationship between
-      CO2 per capita emissions and happiness scores by country in 2018.
+    p("This scatter plot shows the global, positive relationship between CO2
+      per capita emissions and happiness scores by country in 2018.
       This suggests that the countries with higher happiness scores tend to
       produce more CO2 emissions per capita, apart from a few outliers.
       Through looking at our data holistically we believe that this
@@ -271,7 +264,8 @@ introduction <- tabPanel(
               happiness and CO2 emission per capita? Why does that
               correlation make sense?")
     ),
-    p("To answer these questions, we have created a joined dataset consisting of
+    tags$p(id = "red",
+    "To answer these questions, we have created a joined dataset consisting of
     2018 happiness values on a scale of 1-10 from the World Happiness Report and
     CO2emissions from 2018 measured in millions of metric tons from
     150 countries worldwide. In the study, happiness
@@ -304,8 +298,7 @@ intro_main_one <- mainPanel(
     choices = intro_choices
   ),
   
-  tags$p(id = "font",
-  "Comparison of Different Factors (darker purple = higher
+  p("Comparison of Different Factors (darker purple = higher
     and gray = no data for that country)"),
   leafletOutput(outputId = "map"),
   

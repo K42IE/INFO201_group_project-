@@ -17,13 +17,9 @@ server <- function(input, output) {
   intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
     rename(NAME = Country.or.region)
   
-  
-  
   # gets the colnames of the data frame to put as options in the widget
   intro_col_names <- colnames(intro_df)
   intro_choices <- intro_col_names[c(3:9, 13)]
-  
-  
   
   # rest
   world_spdf <- readOGR(
@@ -32,19 +28,14 @@ server <- function(input, output) {
     verbose = FALSE
   )
   
-  
-  
   world_spdf@data <- world_spdf@data %>%
     left_join(intro_df, by = "NAME")
-  
   
   
   # Create a color palette for the map:
   mypalette <- colorNumeric(palette = "viridis", domain = world_spdf@data$co2,
                             na.color = "transparent")
   mypalette(c(45, 43))
-  
-  
   
   output$map <- renderLeaflet({
     leaflet(world_spdf) %>%
@@ -69,21 +60,14 @@ server <- function(input, output) {
     title <- paste0("Scatter Plot: ", "CO2 per Capita", " v. ", input$y_var_pg3)
     
     #plot data using ggplot
-    plot <- ggplot(data = final_data) +
+    plot <- ggplot(data = final_data, ) +
       # created trend line
       geom_point(mapping = aes_string(x = final_data$co2.per.capita,
                                       y = input$y_var_pg3)) +
       labs(x = "CO2 per Capita", y = input$y_var_pg3, title = title)
     
     ggplotly(plot)
-    #add statement to include trend box option for user
-    
-    if (input$smooth) {
-      plot <- plot + geom_smooth(mapping =
-                                   aes_string(x = final_data$co2.per.capita,
-                                              y = input$y_var_pg3))
-    }
-    
+
     
     plot
     
@@ -91,8 +75,11 @@ server <- function(input, output) {
   
   output$hover_info <- renderPrint({
     cat("input$plot_hover:\n")
-    str(input$plot_hover)
+    x <- input$plot_hover$coords_css$x
+    y <- input$plot_hover$coords_css$y
+    str(paste("(", x, ",", y, ")"))
   })
+  
   
   # For page 4
   
@@ -106,13 +93,15 @@ server <- function(input, output) {
     plot <- ggplot(data = final_data) +
       geom_point(mapping = aes_string(x = input$x_var, y = input$y_var)) +
       labs(x = input$x_var, y = input$y_var, title = title)
-    #add statement to include trend box option for user
-    if (input$smooth) {
-      plot <- plot + geom_smooth(mapping =
-                                   aes_string(x = input$x_var, y = input$y_var))
-    }
     
     plot
     
+  })
+  
+  output$hover_info_p4 <- renderPrint({
+    cat("input$plot_hover_p4:\n")
+    x <- input$plot_hover_p4$coords_css$x
+    y <- input$plot_hover_p4$coords_css$y
+    str(paste("(", x, ",", y, ")"))
   })
 }
