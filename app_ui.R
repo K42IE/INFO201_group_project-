@@ -55,14 +55,14 @@ plot_sidebar_content_pg3 <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita")
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
 )
 
 # Content for the main panel
 plot_main_content_pg3 <- mainPanel(
-  
-  plotOutput("scatter_pg3",
-             hover = hoverOpts(id = "plot_hover")),
+  plotOutput("scatter_pg3", hover = hoverOpts(id = "plot_hover")),
   verbatimTextOutput("hover_info"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how
   happiness score-encompassing variables relate to CO2 per capita. Thus,
@@ -134,7 +134,9 @@ plot_sidebar_content <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita")
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
 )
 
 
@@ -174,7 +176,7 @@ summary <- tabPanel(
        Life Expectancy and Social Support."),
     img(alt = "GDPvsLifeExpImage", src = "GDP_lifeexpectancy.png", width = 480),
     img(alt = "GDPvsSocialImage", src = "GDP_socialsupport.png", width = 480),
-    (id = "As seen in these 2 graphs, despite a few outliers, there is a
+    p("As seen in these 2 graphs, despite a few outliers, there is a
       strong positive correlation between GDP per capita and both
       the Health and Life Expectancy and Social Support scores.
       Altogether, this makes a lot of sense. Countries that are
@@ -226,11 +228,6 @@ summary <- tabPanel(
   )
 )
 
-
-# gets the colnames of the data frame to put as options in the widget
-intro_col_names <- colnames(intro_df)
-intro_choices <- intro_col_names[c(3:9, 13)]
-
 # writing part
 
 introduction <- tabPanel(
@@ -264,8 +261,7 @@ introduction <- tabPanel(
               happiness and CO2 emission per capita? Why does that
               correlation make sense?")
     ),
-    tags$p(id = "red",
-    "To answer these questions, we have created a joined dataset consisting of
+    p("To answer these questions, we have created a joined dataset consisting of
     2018 happiness values on a scale of 1-10 from the World Happiness Report and
     CO2emissions from 2018 measured in millions of metric tons from
     150 countries worldwide. In the study, happiness
@@ -289,20 +285,7 @@ introduction <- tabPanel(
 
 # other parts of intro
 
-intro_main_one <- mainPanel(
-  
-  
-  comparison_input <- selectInput(
-    inputId = "comparison",
-    label = "Choose what to compare by:",
-    choices = intro_choices
-  ),
-  
-  p("Comparison of Different Factors (darker purple = higher
-    and gray = no data for that country)"),
-  leafletOutput(outputId = "map"),
-  
-)
+
 
 
 
@@ -312,27 +295,8 @@ intro_page_one <- tabPanel(
   
   titlePanel("Introduction"),
   
-  introduction,
-  intro_main_one
+  introduction
 )
-
-
-# rest
-
-world_spdf <- readOGR(
-  dsn = "world_shape_file",
-  layer = "TM_WORLD_BORDERS_SIMPL-0.3",
-  verbose = FALSE
-)
-
-world_spdf@data <- world_spdf@data %>%
-  left_join(intro_df, by = "NAME")
-
-# Create a color palette for the map:
-mypalette <- colorNumeric(palette = "viridis",
-                          domain =
-                            world_spdf@data$co2, na.color = "transparent")
-mypalette(c(45, 43))
 
 
 ## UI function (combines all pages)

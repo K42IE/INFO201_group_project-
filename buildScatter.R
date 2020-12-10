@@ -2,7 +2,7 @@
 library(dplyr)
 library(plotly)
 
-buildScatter <- function(df, region) {
+build_scatter <- function(df, region) {
   # Refines data frame to the continents the user selects in the UI
   refined_df <- filter(df, continent %in% region)
 
