@@ -206,7 +206,11 @@ introduction <- tabPanel(
     factor in how many more people China has than low emission countries like 
     the Central African Republic which is why our group's focus is on the CO2 
     emissions per capita data as well as the happiness values from the world 
-    happiness study.")
+    happiness study.",
+      a("Wolrd Happiness Data", 
+        href = "https://www.kaggle.com/unsdsn/world-happiness"),
+      a("CO2 And Greenhouse Gas Emission Data", 
+      href = "https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json"))
   )
 )
 
@@ -239,8 +243,7 @@ intro_page_one <- tabPanel(
   intro_main_one
 )
 
-<<<<<<< HEAD
-=======
+
 # rest
 
 world_spdf <- readOGR( 
@@ -256,13 +259,12 @@ world_spdf@data <- world_spdf@data %>%
 mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.color="transparent")
 mypalette(c(45,43))
 
->>>>>>> 236dc41dd709321c7c9e824e4a6a9768876b0712
 
 ## UI function (combines all pages)
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(
-    "CO2 vs Happiness",
+    "CO2 & Happiness",
     intro_page_one,
     page_two,
     page_3,
