@@ -4,7 +4,37 @@ library(shiny)
 library(ggplot2)
 library(lintr)
 library(plotly)
+
+# read in data frame
 final_data <- read.csv("./data/final_data2.csv", stringsAsFactors = FALSE)
+
+# for page 1
+
+# code for the introduction and map
+intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
+  rename(NAME = Country.or.region)
+
+# gets the colnames of the data frame to put as options in the widget
+intro_col_names <- colnames(intro_df)
+intro_choices <- intro_col_names[c(3:9, 13)]
+
+# rest
+world_spdf <- readOGR(
+  dsn = "world_shape_file",
+  layer = "TM_WORLD_BORDERS_SIMPL-0.3",
+  verbose = FALSE
+)
+
+world_spdf@data <- world_spdf@data %>%
+  left_join(intro_df, by = "NAME")
+
+
+# Create a color palette for the map:
+mypalette <- colorNumeric(
+  palette = "viridis", domain = world_spdf@data$co2,
+  na.color = "transparent"
+)
+mypalette(c(45, 43))
 
 
 # Content for the 2nd page
@@ -174,8 +204,8 @@ summary <- tabPanel(
   mainPanel(
     h3("Strong correlation between GDP per Capita and both Health
        Life Expectancy and Social Support."),
-    img(alt = "GDPvsLifeExpImage", src = "GDP_lifeexpectancy.png", width = 480),
-    img(alt = "GDPvsSocialImage", src = "GDP_socialsupport.png", width = 480),
+    img(alt = "GDPvsLifeExpImage", src = "GDP_lifeexpectancy.PNG", width = 480),
+    img(alt = "GDPvsSocialImage", src = "GDP_socialsupport.PNG", width = 480),
     p("As seen in these 2 graphs, despite a few outliers, there is a
       strong positive correlation between GDP per capita and both
       the Health and Life Expectancy and Social Support scores.
@@ -194,7 +224,7 @@ summary <- tabPanel(
       social support offered to them."),
     h3("Comparison of the Happiness and CO2 relationship between Africa
        and Eurasia (European and Asian countries)"),
-    img(alt = "AfricaTrendImage", src = "Africa_trend.png", width = 480),
+    img(alt = "AfricaTrendImage", src = "Africa_trend.PNG", width = 480),
     img(alt = "EurasiaTrendImage", src = "Eurasia_trend.jpg", width = 480),
     p("These two graphs show the relationship between raw happiness score
       and yearly average CO2 per capita data from 2018. In the first graph,
@@ -283,10 +313,22 @@ introduction <- tabPanel(
   )
 )
 
-# other parts of intro
+# other parts of intro 
 
-
-
+intro_main_one <- mainPanel(
+  
+  
+  comparison_input <- selectInput(
+    inputId = "comparison",
+    label = "Choose what to compare by:",
+    choices = intro_choices
+  ),
+  
+  p("Comparison of Different Factors (darker purple = higher 
+    and gray = no data for that country)"),
+  leafletOutput(outputId = "map"),
+  
+)
 
 
 intro_page_one <- tabPanel(
@@ -295,7 +337,8 @@ intro_page_one <- tabPanel(
   
   titlePanel("Introduction"),
 
-  introduction
+  introduction, 
+  intro_main_one
 )
 
 
