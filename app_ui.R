@@ -257,11 +257,16 @@ mypalette(c(45,43))
 
 
 ## UI function (combines all pages)
-ui <- navbarPage(
-  "CO2 vs Happiness",
-  intro_page_one,
-  page_two,
-  page_3,
-  plot_panel,
-  summary
+ui <- fluidPage(
+  includeCSS("style.css"),
+  navbarPage(
+    "CO2 vs Happiness",
+    intro_page_one,
+    page_two,
+    page_3,
+    plot_panel,
+    summary
+  )
 )
+
+
