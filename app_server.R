@@ -69,7 +69,7 @@ server <- function(input, output) {
     title <- paste0("Scatter Plot: ", "CO2 per Capita", " v. ", input$y_var_pg3)
 
     #plot data using ggplot
-    plot <- ggplot(data = final_data) +
+    plot <- ggplot(data = final_data, ) +
     # created trend line
       geom_point(mapping = aes_string(x = final_data$co2.per.capita,
                                       y = input$y_var_pg3)) +
@@ -91,8 +91,11 @@ server <- function(input, output) {
   
   output$hover_info <- renderPrint({
     cat("input$plot_hover:\n")
-    str(input$plot_hover)
+    x <- input$plot_hover$coords_css$x
+    y <- input$plot_hover$coords_css$y
+    str(paste("(", x, ",", y, ")"))
   })
+  
 
   # For page 4
 
@@ -114,5 +117,12 @@ server <- function(input, output) {
 
     plot
 
+  })
+  
+  output$hover_info_p4 <- renderPrint({
+    cat("input$plot_hover_p4:\n")
+    x <- input$plot_hover_p4$coords_css$x
+    y <- input$plot_hover_p4$coords_css$y
+    str(paste("(", x, ",", y, ")"))
   })
 }

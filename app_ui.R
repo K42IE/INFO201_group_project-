@@ -62,11 +62,9 @@ plot_sidebar_content_pg3 <- sidebarPanel(
 
 # Content for the main panel
 plot_main_content_pg3 <- mainPanel(
+  
   plotOutput("scatter_pg3",
-             hover = hoverOpts(
-               id = "plot_hover"
-             )
-             ),
+             hover = hoverOpts(id = "plot_hover")),
   verbatimTextOutput("hover_info"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how
   happiness score-encompassing variables relate to CO2 per capita. Thus,
@@ -145,7 +143,9 @@ plot_sidebar_content <- sidebarPanel(
 
 
 plot_main_content <- mainPanel(
-  plotOutput("scatter"),
+  plotOutput("scatter",
+             hover = hoverOpts(id = "plot_hover_p4")),
+  verbatimTextOutput("hover_info_p4"),
   p(strong("Visualization Justification:"), "This chart seeks to answer
     how the variables that make up the overall happiness score
     are related to each other. Thus, do some variables have
