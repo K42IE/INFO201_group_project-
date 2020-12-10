@@ -1,0 +1,19 @@
+p {
+  font-size: 16px;
+  color: black;
+  font-family: Arial, Helvetica, serif;
+}
+
+strong {
+  color: #7B7EA0;
+}
+
+li {
+    font-size: 16px;
+    color: black;
+    font-family: Arial, Helvetica, serif;
+}
+
+label {
+  color: #7B7EA0;
+}

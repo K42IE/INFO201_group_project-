@@ -239,13 +239,36 @@ intro_page_one <- tabPanel(
   intro_main_one
 )
 
+<<<<<<< HEAD
+=======
+# rest
 
-# ui function (combines all pages)
-ui <- navbarPage(
-  "Group Project",
-  intro_page_one,
-  page_two,
-  page_3,
-  plot_panel,
-  summary
+world_spdf <- readOGR( 
+  dsn="world_shape_file", 
+  layer="TM_WORLD_BORDERS_SIMPL-0.3",
+  verbose=FALSE
 )
+
+world_spdf@data <- world_spdf@data %>%
+  left_join(intro_df, by = "NAME")
+
+# Create a color palette for the map:
+mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.color="transparent")
+mypalette(c(45,43))
+
+>>>>>>> 236dc41dd709321c7c9e824e4a6a9768876b0712
+
+## UI function (combines all pages)
+ui <- fluidPage(
+  includeCSS("style.css"),
+  navbarPage(
+    "CO2 vs Happiness",
+    intro_page_one,
+    page_two,
+    page_3,
+    plot_panel,
+    summary
+  )
+)
+
+
