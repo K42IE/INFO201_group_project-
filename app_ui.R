@@ -43,49 +43,12 @@ page_two <- tabPanel(
 # Content for the 3th page
 gdp_range <- range(final_data$GDP.per.capita)
 
-select_values <- colnames(final_data)
+plot_sidebar_content_pg3 <- sidebarPanel(
 
-
-x_input <- selectInput(
-  "x_var",
-  label = "X Variable",
-  choices = list("GDP per Capita" = "GDP.per.capita", 
-                 "Social Support" = "Social.support", 
-                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
-                 "Generosity" = "Generosity", 
-                 "Corruption Perceptions" = "Perceptions.of.corruption"),
-  selected = "GDP per Capita")
-
-y_input <- selectInput(
-  "y_var",
-  label = "Y Variable",
-  choices = list("GDP per Capita" = "GDP.per.capita", 
-                 "Social Support" = "Social.support", 
-                 "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                 "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
-                 "Generosity" = "Generosity", 
-                 "Corruption Perceptions" = "Perceptions.of.corruption"),
-  selected = "Social Support")
-
-
-
-plot_sidebar_content <- sidebarPanel(
   selectInput(
-    "x_var",
-    label = "X Variable",
-    choices = list("GDP per Capita" = "GDP.per.capita", 
-                   "Social Support" = "Social.support", 
-                   "Healthy Life Expectancy" = "Healthy.life.expectancy",
-                   "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
-                   "Generosity" = "Generosity", 
-                   "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "Generosity"),
-  selectInput(
-    "y_var",
+    "y_var_pg3",
     label = "Y Variable",
-    choices = list("GDP per Capita" = "GDP.per.capita", 
-                   "Social Support" = "Social.support", 
+    choices = list("Social Support" = "Social.support", 
                    "Healthy Life Expectancy" = "Healthy.life.expectancy",
                    "Freedom to Make Life Choices" = "Freedom.to.make.life.choices", 
                    "Generosity" = "Generosity", 
@@ -96,28 +59,25 @@ plot_sidebar_content <- sidebarPanel(
 )
 
 
-plot_main_content <- mainPanel(
-  plotOutput("scatter"),
-  p(strong("Visualization Justification:"), "This chart seeks to answer
-    how the variables that make up the overall happiness score
-    are related to each other. Thus, do some variables have 
-    a stronger realtionship than others? Are there any
-    varaibles that have a negative relationship?"),
-  p(strong("Why This Chart:"), "A scatter plot was appropriate in this
-    situation because it clearly allows the users to see
-    the relationship of the different variables. The ability
-    to add a trend line to this plot also furhter clarifies 
-    and highlights the relationship between the selected
-    variables.")
+plot_main_content_pg3 <- mainPanel(
+  plotOutput("scatter_pg3"),
+  p(strong("Visualization Justification:"), "This chart seeks to answer how 
+    happiness score-encompassing variables relate to GDP per capita. Thus, 
+    which variables have positive relationships with GDP per capita? Are there 
+    variables revealing a negative relationship with GDP per capita?"),
+  p(strong("Why This Chart:"), "A scatter plot is appropriate in this css as it 
+    clearly allows users to observe patterns and identify correlational
+    relationships between variables; and trend lines are intended to highlight 
+    those correlating relationships.")
 )
 
 
-plot_panel <- tabPanel(
-  "Happiness Variables",
-  titlePanel("Select Scatter Plot Variables:"),
+page_3 <- tabPanel(
+  "Happiness Variables vs GDP",
+  titlePanel("How do the Happiness Varables Relate to GDP?"),
   sidebarLayout(
-    plot_sidebar_content,
-    plot_main_content
+    plot_sidebar_content_pg3,
+    plot_main_content_pg3
   )
 )
 
@@ -311,6 +271,7 @@ ui <- navbarPage(
   "Group Project",
   intro_page_one,
   page_two,
+  page_3,
   plot_panel,
   summary
 )

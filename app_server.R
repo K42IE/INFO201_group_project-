@@ -27,7 +27,7 @@ server <- function(input, output) {
   })
   
   # For page 3
-  output$scatter <- renderPlot({
+  output$scatter_pg3 <- renderPlot({
     
     title <- paste0("Scatter Plot: ", input$x_var, " v. ", input$y_var)
     

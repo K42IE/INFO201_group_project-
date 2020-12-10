@@ -7,7 +7,7 @@ buildScatter <- function(df, region) {
     plot <- plot_ly(
       data = refined_df,
       x = ~Score,
-      y = ~co2.per.capita
+      y = ~co2.per.capita,
       type = "scatter",
       mode = "markers"
     ) %>%
