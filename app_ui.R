@@ -19,7 +19,7 @@ page_two_side <- sidebarPanel(
 #Content for the 2nd page
 page_two_main <- mainPanel(
   plotlyOutput(
-    outputId = "co2HappinessPlot"
+    outputId = "co2_happiness_plot"
   ),
   p(strong("Visualization Justification:"), "This chart seeks to answer the
   question: Do different regions/continents have different trends when

@@ -57,7 +57,7 @@ server <- function(input, output) {
   })
 
   ## For page 2
-  output$co2HappinessPlot <- renderPlotly({
+  output$co2_happiness_plot <- renderPlotly({
     return(buildScatter(final_data, input$checkRegion))
   })
 
