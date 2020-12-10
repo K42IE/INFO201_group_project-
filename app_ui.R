@@ -19,7 +19,7 @@ page_two_side <- sidebarPanel(
 #Content for the 2nd page
 page_two_main <- mainPanel(
   plotlyOutput(
-    outputId = "co2HappinessPlot"
+    outputId = "co2_happiness_plot"
   ),
   p(strong("Visualization Justification:"), "This chart seeks to answer the
   question: Do different regions/continents have different trends when
@@ -55,17 +55,24 @@ plot_sidebar_content_pg3 <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita")
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
 )
 
 # Content for the main panel
 plot_main_content_pg3 <- mainPanel(
-  plotOutput("scatter_pg3"),
+  plotOutput("scatter_pg3",
+             hover = hoverOpts(
+               id = "plot_hover"
+             )
+  ),
+  verbatimTextOutput("hover_info"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how
   happiness score-encompassing variables relate to CO2 per capita. Thus,
     which variables have positive relationships with CO2 per capita? Are there
     variables revealing a negative relationship with CO2 per capita?"),
-    p(strong("Why This Chart:"), "A scatter plot is appropriate in this case as
+  p(strong("Why This Chart:"), "A scatter plot is appropriate in this case as
   it clearly allows users to observe patterns and identify correlational
   relationships between variables; and trend lines are intended to highlight
     those correlating relationships.")
@@ -92,7 +99,7 @@ x_input <- selectInput(
                    "Freedom.to.make.life.choices",
                  "Generosity" = "Generosity",
                  "Corruption Perceptions" = "Perceptions.of.corruption"),
-selected = "GDP per Capita")
+  selected = "GDP per Capita")
 
 y_input <- selectInput(
   "y_var",
@@ -104,7 +111,7 @@ y_input <- selectInput(
                    "Freedom.to.make.life.choices",
                  "Generosity" = "Generosity",
                  "Corruption Perceptions" = "Perceptions.of.corruption"),
-selected = "Social Support")
+  selected = "Social Support")
 
 
 
@@ -131,7 +138,9 @@ plot_sidebar_content <- sidebarPanel(
                      "Freedom.to.make.life.choices",
                    "Generosity" = "Generosity",
                    "Corruption Perceptions" = "Perceptions.of.corruption"),
-    selected = "GDP per Capita")
+    selected = "GDP per Capita"),
+  checkboxInput("smooth", label = strong("Show Trendline"),
+                value = TRUE)
 )
 
 
@@ -185,7 +194,8 @@ summary <- tabPanel(
       have enough money for every governmental sector, poorer countries
       need to find away to improve the health of their citizens and the
       social support offered to them."),
-    h3("Comparison of the Happiness and CO2 relationship between Africa
+     h3(
+    "Comparison of the Happiness and CO2 relationship between Africa
        and Eurasia (European and Asian countries)"),
     img(alt = "AfricaTrendImage", src = "Africa_trend.png", width = 480),
     img(alt = "EurasiaTrendImage", src = "Eurasia_trend.jpg", width = 480),
@@ -208,8 +218,10 @@ summary <- tabPanel(
       that pollutes the atmosphere."),
     h3("Global Correlation between Happiness Scores and CO2 per Capita"),
     img(alt = "GlobalTrendImage", src = "Global_trend.png", width = 480),
-    p("This scatter plot shows the global, positive relationship between CO2
-      per capita emissions and happiness scores by country in 2018.
+    tags$p(
+    id = "red",
+    "This scatter plot shows the global, positive relationship between
+      CO2 per capita emissions and happiness scores by country in 2018.
       This suggests that the countries with higher happiness scores tend to
       produce more CO2 emissions per capita, apart from a few outliers.
       Through looking at our data holistically we believe that this
@@ -218,7 +230,7 @@ summary <- tabPanel(
       emissions as they have big cities and largescale industrial sectors.
       The happiest countries are those that feel most free to use CO2 as
       they please and that is clear from our data."),
-    )
+  )
 )
 
 
@@ -273,9 +285,9 @@ introduction <- tabPanel(
     the Central African Republic which is why our group's focus is on the CO2
     emissions per capita data as well as the happiness values from the world
     happiness study."),
-      a("Wolrd Happiness Data",
-        href = "https://www.kaggle.com/unsdsn/world-happiness"),
-      a("CO2 And Greenhouse Gas Emission Data",
+    a("Wolrd Happiness Data",
+      href = "https://www.kaggle.com/unsdsn/world-happiness"),
+    a("CO2 And Greenhouse Gas Emission Data",
       href = "https://github.com/owid/co2-data#%EF%B8%8F-download-our-complete-
       co2-and-greenhouse-gas-emissions-dataset--csv--xlsx--json")
   )
@@ -284,28 +296,29 @@ introduction <- tabPanel(
 # other parts of intro
 
 intro_main_one <- mainPanel(
-
-
-comparison_input <- selectInput(
+  
+  
+  comparison_input <- selectInput(
     inputId = "comparison",
     label = "Choose what to compare by:",
     choices = intro_choices
   ),
-
-  p("Comparison of Different Factors (darker purple = higher
+  
+  tags$p(id = "font",
+  "Comparison of Different Factors (darker purple = higher
     and gray = no data for that country)"),
   leafletOutput(outputId = "map"),
-
+  
 )
 
 
 
 intro_page_one <- tabPanel(
-
+  
   "Introduction",
-
+  
   titlePanel("Introduction"),
-
+  
   introduction,
   intro_main_one
 )
@@ -324,8 +337,8 @@ world_spdf@data <- world_spdf@data %>%
 
 # Create a color palette for the map:
 mypalette <- colorNumeric(palette = "viridis",
-                           domain =
-                             world_spdf@data$co2, na.color = "transparent")
+                          domain =
+                            world_spdf@data$co2, na.color = "transparent")
 mypalette(c(45, 43))
 
 
