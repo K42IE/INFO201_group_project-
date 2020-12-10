@@ -244,7 +244,7 @@ summary <- tabPanel(
       and industrial factories which all contribute to the emission of CO2
       that pollutes the atmosphere."),
     h3("Global Correlation between Happiness Scores and CO2 per Capita"),
-    img(alt = "GlobalTrendImage", src = "Global_trend.png", width = 480),
+    img(alt = "GlobalTrendImage", src = "Global_trend.PNG", width = 480),
     p("This scatter plot shows the global, positive relationship between CO2
       per capita emissions and happiness scores by country in 2018.
       This suggests that the countries with higher happiness scores tend to
