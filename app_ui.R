@@ -43,6 +43,7 @@ page_two <- tabPanel(
 # Content for the 3th page
 
 plot_sidebar_content_pg3 <- sidebarPanel(
+  h2("Choose the Happiness Variable You Want to Display"),
   selectInput(
     "y_var_pg3",
     label = "Y Variable",
@@ -60,10 +61,10 @@ plot_sidebar_content_pg3 <- sidebarPanel(
 plot_main_content_pg3 <- mainPanel(
   plotOutput("scatter_pg3"),
   p(strong("Visualization Justification:"), "This chart seeks to answer how 
-    happiness score-encompassing variables relate to GDP per capita. Thus, 
-    which variables have positive relationships with GDP per capita? Are there 
-    variables revealing a negative relationship with GDP per capita?"),
-  p(strong("Why This Chart:"), "A scatter plot is appropriate in this css as it 
+    happiness score-encompassing variables relate to CO2 per capita. Thus, 
+    which variables have positive relationships with CO2 per capita? Are there 
+    variables revealing a negative relationship with CO2 per capita?"),
+  p(strong("Why This Chart:"), "A scatter plot is appropriate in this case as it 
     clearly allows users to observe patterns and identify correlational
     relationships between variables; and trend lines are intended to highlight 
     those correlating relationships.")
@@ -71,8 +72,8 @@ plot_main_content_pg3 <- mainPanel(
 
 
 page_3 <- tabPanel(
-  "Happiness Variables vs GDP",
-  titlePanel("How do the Happiness Varables Relate to GDP?"),
+  "Happiness Variables vs CO2",
+  titlePanel("How do the Happiness Varables Relate to CO2?"),
   sidebarLayout(
     plot_sidebar_content_pg3,
     plot_main_content_pg3
@@ -105,6 +106,7 @@ selected = "Social Support")
 
 
 plot_sidebar_content <- sidebarPanel(
+  h2("Choose the Happiness Variables You Want to Display"),
   selectInput(
     "x_var",
     label = "X Variable",
@@ -148,7 +150,7 @@ plot_main_content <- mainPanel(
 
 plot_panel <- tabPanel(
   "Happiness Variables",
-  titlePanel("Select Scatter Plot Variables:"),
+  titlePanel("How do the Happiness Varables Relate to Each Other?"),
   sidebarLayout(
     plot_sidebar_content,
     plot_main_content
@@ -174,9 +176,6 @@ summary <- tabPanel(
     )
 )
 
-# code for the introduction and map
-intro_df <- read.csv("data/final_data2.csv", stringsAsFactors = FALSE) %>%
-  rename(NAME = Country.or.region)
 
 # gets the colnames of the data frame to put as options in the widget
 intro_col_names <- colnames(intro_df)
@@ -239,25 +238,6 @@ intro_page_one <- tabPanel(
   introduction,
   intro_main_one
 )
-
-# rest
-
-
-download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
-system("unzip data/world_shape_file.zip")
-
-world_spdf <- readOGR( 
-  dsn="world_shape_file", 
-  layer="TM_WORLD_BORDERS_SIMPL-0.3",
-  verbose=FALSE
-)
-
-world_spdf@data <- world_spdf@data %>%
-  left_join(intro_df, by = "NAME")
-
-# Create a color palette for the map:
-mypalette <- colorNumeric( palette="viridis", domain=world_spdf@data$co2, na.color="transparent")
-mypalette(c(45,43))
 
 
 # ui function (combines all pages)
